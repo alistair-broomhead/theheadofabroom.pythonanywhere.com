@@ -5,7 +5,7 @@ function Particle(x, y) {
 }
 
 Particle.prototype = {
-    num: 2500,
+    num: 1600,
     img_chunk: 10,
     canvas_chunk: 10,
     aspect: {},
@@ -25,17 +25,16 @@ Particle.rescale_for_image = function(image){
 
     source.area = image.height * image.width;
     source.scale = source.area / target;
-    source.chunk = Math.floor(Math.sqrt(source.scale));
+    source.chunk = Math.ceil(Math.sqrt(source.scale));
 
     // This is the side length of each particle. Particles are square,
     // so this will be the square root of the particle area.
     protoPart.img_chunk = source.chunk;
 
     // This is how many particles we need to lay out in each direction,
-    // to consume the image. This means we may have a few more than the
-    // wanted number, but hopefully not by too many - it will depend how
-    // easily the required number of particles fits into the dimensions
-    // of the image.
+    // to consume the image. This means we may have fewer than the
+    // wanted number, but hopefully not by too many. Fewer will mean it
+    // performs well, but more will mean it looks better.
 
     var aspect = protoPart.aspect = {
         x: Math.ceil( image.width / source.chunk ),
@@ -48,13 +47,14 @@ Particle.rescale_for_image = function(image){
 
     var actual = aspect.x * aspect.y;
 
-    if (actual > target){
+    if (actual != target){
         // I want to keep a tab on how many particles we actually get,
         // and how far over this is, as I know that too many particles
         // will look better, but too few will perform better.
         console.log("Target: "+target+
                     ", Actual: "+actual+
-                    ", Overshot="+(actual - target));
+                    ", Overshot:"+(actual - target)+
+                    ", Size:"+source.chunk);
 
     }
 };
