@@ -2,10 +2,12 @@
 <html>
 <head>
     <title> Particle Exploder </title>
+    <!-- Shared libs -->
     <script src="/static/js/lib/particles.js"></script>
     <script src="/static/js/lib/mouse.js"></script>
     <script src="/static/js/lib/touch.js"></script>
     <script src="/static/js/lib/input.js"></script>
+    <!-- App objects -->
     <script src="/static/js/app/exploder/canvas_animation.js"></script>
     <script src="/static/js/app/exploder/exploder.js"></script>
 </head>
@@ -14,7 +16,6 @@
     <canvas id="gameCanvas" height="400" width="600"></canvas>
 </div>
 <script>
-    document.app_namespace = exploder_app;
     exploder_app.start(document, window, 'gameCanvas', '/static/jpg/flash.jpg');
 </script>
   

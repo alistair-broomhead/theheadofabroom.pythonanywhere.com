@@ -1,7 +1,6 @@
-function Input() {
-    var _ = document.app_namespace;
-    this.window = _.window;
-    this.canvas = _.canvas;
+function Input(window, canvas) {
+    this.window = window;
+    this.canvas = canvas;
 
     this.mouse = new Mouse();
     this.touches = [this.mouse];

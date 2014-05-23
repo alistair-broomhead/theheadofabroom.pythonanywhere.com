@@ -1,8 +1,7 @@
-function CanvasAnimation() {
-    var _ = document.app_namespace;
-    this.window = _.window;
-    this.canvas = _.canvas;
-    this.input = _.input;
+function ExploderCanvasAnimation(window, canvas, input) {
+    this.window = window;
+    this.canvas = canvas;
+    this.input = input;
 
     var w = this.canvas.width = self.window.innerWidth;
     var h = this.canvas.height = self.window.innerHeight;
@@ -10,7 +9,7 @@ function CanvasAnimation() {
     this.crossHairRadius = Math.sqrt((w/25) * (h/25));
 }
 
-CanvasAnimation.prototype = {
+ExploderCanvasAnimation.prototype = {
     window: undefined,
     canvas: undefined,
     crossHairRadius: 25,
@@ -18,7 +17,7 @@ CanvasAnimation.prototype = {
     time: {}
 };
 
-CanvasAnimation.prototype.drawParticles = function (context) {
+ExploderCanvasAnimation.prototype.drawParticles = function (context) {
     if (this.particles && this.image.src) {
         for (var i = 0; i < this.particles.length; i++) {
             this.particles[i].draw(this, context);
@@ -26,13 +25,13 @@ CanvasAnimation.prototype.drawParticles = function (context) {
     }
 };
 
-CanvasAnimation.prototype.distance = function (a, b) {
+ExploderCanvasAnimation.prototype.distance = function (a, b) {
     var x = a.x - b.x;
     var y = a.y - b.y;
     return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 };
 
-CanvasAnimation.prototype.fire = function (touch, factor) {
+ExploderCanvasAnimation.prototype.fire = function (touch, factor) {
     if (touch.down) {
         for (var i = 0; i < this.particles.length; i++) {
             var particle = this.particles[i];
@@ -44,7 +43,7 @@ CanvasAnimation.prototype.fire = function (touch, factor) {
     }
 };
 
-CanvasAnimation.prototype.updateParticles = function () {
+ExploderCanvasAnimation.prototype.updateParticles = function () {
     if (this.time.period == 0){ return; }
 
     var i;
@@ -58,7 +57,7 @@ CanvasAnimation.prototype.updateParticles = function () {
     }
 };
 
-CanvasAnimation.prototype.drawCrossHair = function (touch, context) {
+ExploderCanvasAnimation.prototype.drawCrossHair = function (touch, context) {
     if (touch.pos.x && touch.pos.y) {
         context.globalAlpha = 0.5;
         context.beginPath();
@@ -82,7 +81,7 @@ CanvasAnimation.prototype.drawCrossHair = function (touch, context) {
     }
 };
 
-CanvasAnimation.prototype.getTime = function getTime(){
+ExploderCanvasAnimation.prototype.getTime = function getTime(){
     var date = new Date();
     var now = date.getTime();
     if (this.time.current){
@@ -94,19 +93,13 @@ CanvasAnimation.prototype.getTime = function getTime(){
     this.time.period = this.time.current - this.time.previous;
 };
 
-CanvasAnimation.prototype.requestAnimFrame = function _requestAnimFrame(){
+ExploderCanvasAnimation.prototype.requestAnimFrame = function _requestAnimFrame(){
     var self = this;
     requestAnimFrame(function(){self.animate()});
 };
 
-CanvasAnimation.prototype.on_image_load = function on_image_load() {
-    var self = document.app_namespace.animation;
-    self.particles = Particle.createArray();
-    self.animate();
-};
 
-
-CanvasAnimation.prototype.animate = function animate() {
+ExploderCanvasAnimation.prototype.animate = function animate() {
     context = this.canvas.getContext('2d');
     this.getTime();
     // update
@@ -122,9 +115,18 @@ CanvasAnimation.prototype.animate = function animate() {
     this.requestAnimFrame();
 };
 
-CanvasAnimation.prototype.start = function start(img_src) {
-    var _ = document.app_namespace;
-    this.image = _.image = new Image();
-    this.image.onload = this.on_image_load;
+
+ExploderCanvasAnimation.prototype.start = function start(img_src) {
+    this.image = new Image();
+
+    this.image.onLoad = function onLoad() {
+        var self = exploder_app.animation;
+        var canvas = exploder_app.canvas;
+        var image = exploder_app.image;
+
+        self.particles = Particle.createArray(canvas, image);
+        self.animate();
+    };
+
     this.image.src = img_src;
 };

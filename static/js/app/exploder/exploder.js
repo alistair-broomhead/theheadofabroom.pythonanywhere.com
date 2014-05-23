@@ -1,6 +1,7 @@
 exploder_app = {
     canvas: undefined,
     window: undefined,
+    image: undefined,
 
     input: undefined,
     animation: undefined
@@ -24,7 +25,11 @@ exploder_app.start = function(document, window,
     this.canvas = document.getElementById(canvas_id);
     this.window = window;
 
-    this.input = new Input;
-    this.animation = new CanvasAnimation;
+    this.input = new Input(this.window, this.canvas);
+    this.animation = new ExploderCanvasAnimation(this.window,
+                                         this.canvas,
+                                         this.input);
     this.animation.start(image_url);
+
+    this.image = this.animation.image;
 };

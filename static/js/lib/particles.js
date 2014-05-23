@@ -15,8 +15,7 @@ Particle.prototype = {
     is_locked: true
 };
 
-Particle.createArray = function(){
-    var _ = document.app_namespace;
+Particle.createArray = function(canvas, image){
     var particles = [];
     var x_num = 50;
     var y_num = 50;
@@ -25,15 +24,15 @@ Particle.createArray = function(){
     var canvas_dim = {
         x: undefined,
         y: undefined,
-        w: _.canvas.width / x_num,
-        h: _.canvas.height / y_num
+        w: canvas.width / x_num,
+        h: canvas.height / y_num
     };
 
     var img_dim = {
         x: undefined,
         y: undefined,
-        w: _.image.width / x_num,
-        h: _.image.height / y_num
+        w: image.width / x_num,
+        h: image.height / y_num
     };
 
     for (var y = 0; y < y_num; y++){
