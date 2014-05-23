@@ -5,7 +5,7 @@ function Touch(id, pos) {
 
 Touch.prototype = new Mouse;
 Touch.prototype.down = true;
-Touch.prototype.constructor = Mouse;
+Touch.prototype.constructor = Touch;
 
 Touch.bindEvents = function (input) {
     input.canvas.addEventListener("touchstart", (function (evt) {
