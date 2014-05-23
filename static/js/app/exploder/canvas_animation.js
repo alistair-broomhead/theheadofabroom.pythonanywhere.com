@@ -33,11 +33,19 @@ ExploderCanvasAnimation.prototype.distance = function (a, b) {
 
 ExploderCanvasAnimation.prototype.fire = function (touch, factor) {
     if (touch.down) {
-        for (var i = 0; i < this.particles.length; i++) {
+
+        // By traversing the array in reverse order, I can move a particle
+        // to the end without it affecting which particles are processed.
+        // By re-ordering particles we guarantee that the last particle to
+        // be interacted with will be visible
+
+        for (var i = this.particles.length - 1; i>= 0; i--) {
             var particle = this.particles[i];
             var radius = this.distance(touch.pos, particle.canvas_dim);
             if (radius <= this.crossHairRadius) {
                 particle.explode(factor);
+                this.particles.push(particle);
+                this.particles.splice(i, 1);
             }
         }
     }
