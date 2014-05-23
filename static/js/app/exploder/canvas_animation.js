@@ -105,8 +105,8 @@ ExploderCanvasAnimation.prototype.requestAnimFrame = function _requestAnimFrame(
 ExploderCanvasAnimation.prototype.do_resize = function do_resize(){
     const canvas = this.canvas;
 
-    canvas.width = self.window.innerWidth - 20;
-    canvas.height = self.window.innerHeight - 50;
+    canvas.width = self.window.innerWidth - 10;
+    canvas.height = self.window.innerHeight - 20;
 
     Particle.rescale_for_canvas(canvas);
     this.cross_hair_radius = Particle.prototype.canvas_chunk * 2.5;
