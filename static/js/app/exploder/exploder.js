@@ -26,9 +26,11 @@ exploder_app.start = function(document, window,
     this.window = window;
 
     this.input = new Input(this.window, this.canvas);
-    this.animation = new ExploderCanvasAnimation(this.window,
-                                         this.canvas,
-                                         this.input);
+    var anim = this.animation = new ExploderCanvasAnimation(
+        this.window, this.canvas, this.input);
+
+    window.addEventListener("resize",function(){ anim.resize = true; });
+
     this.animation.start(image_url);
 
     this.image = this.animation.image;

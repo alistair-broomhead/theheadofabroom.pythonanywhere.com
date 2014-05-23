@@ -2,25 +2,21 @@ function ExploderCanvasAnimation(window, canvas, input) {
     this.window = window;
     this.canvas = canvas;
     this.input = input;
-
-    var w = this.canvas.width = self.window.innerWidth;
-    var h = this.canvas.height = self.window.innerHeight;
-
-    this.crossHairRadius = Math.sqrt((w/25) * (h/25));
 }
 
 ExploderCanvasAnimation.prototype = {
     window: undefined,
     canvas: undefined,
-    crossHairRadius: 25,
+    cross_hair_radius: 25,
     particles: undefined,
+    resize: true,
     time: {}
 };
 
 ExploderCanvasAnimation.prototype.drawParticles = function (context) {
     if (this.particles && this.image.src) {
         for (var i = 0; i < this.particles.length; i++) {
-            this.particles[i].draw(this, context);
+            this.particles[i].draw(this.image, context);
         }
     }
 };
@@ -41,8 +37,8 @@ ExploderCanvasAnimation.prototype.fire = function (touch, factor) {
 
         for (var i = this.particles.length - 1; i>= 0; i--) {
             var particle = this.particles[i];
-            var radius = this.distance(touch.pos, particle.canvas_dim);
-            if (radius <= this.crossHairRadius) {
+            var radius = this.distance(touch.pos, particle.canvas_dim());
+            if (radius <= this.cross_hair_radius) {
                 particle.explode(factor);
                 this.particles.push(particle);
                 this.particles.splice(i, 1);
@@ -61,7 +57,7 @@ ExploderCanvasAnimation.prototype.updateParticles = function () {
         this.fire(this.input.touches[i], factor);
     }
     for (i = 0; i < this.particles.length; i++) {
-        this.particles[i].update(this.time.period, this.canvas);
+        this.particles[i].update(this.time.period);
     }
 };
 
@@ -69,20 +65,20 @@ ExploderCanvasAnimation.prototype.drawCrossHair = function (touch, context) {
     if (touch.pos.x && touch.pos.y) {
         context.globalAlpha = 0.5;
         context.beginPath();
-        context.arc(touch.pos.x, touch.pos.y, this.crossHairRadius, 0, 2 * Math.PI, false);
+        context.arc(touch.pos.x, touch.pos.y, this.cross_hair_radius, 0, 2 * Math.PI, false);
         context.fillStyle = 'blue';
         context.fill();
 
         context.globalAlpha = 1;
-        context.moveTo(touch.pos.x, touch.pos.y - this.crossHairRadius - 10);
-        context.lineTo(touch.pos.x, touch.pos.y + this.crossHairRadius + 10);
+        context.moveTo(touch.pos.x, touch.pos.y - this.cross_hair_radius - 10);
+        context.lineTo(touch.pos.x, touch.pos.y + this.cross_hair_radius + 10);
         context.strokeStyle = 'black';
         context.lineWidth = 4;
         context.stroke();
 
         context.beginPath();
-        context.moveTo(touch.pos.x - this.crossHairRadius - 10, touch.pos.y);
-        context.lineTo(touch.pos.x + this.crossHairRadius + 10, touch.pos.y);
+        context.moveTo(touch.pos.x - this.cross_hair_radius - 10, touch.pos.y);
+        context.lineTo(touch.pos.x + this.cross_hair_radius + 10, touch.pos.y);
         context.strokeStyle = 'black';
         context.lineWidth = 4;
         context.stroke();
@@ -106,8 +102,22 @@ ExploderCanvasAnimation.prototype.requestAnimFrame = function _requestAnimFrame(
     requestAnimFrame(function(){self.animate()});
 };
 
+ExploderCanvasAnimation.prototype.do_resize = function do_resize(){
+    const canvas = this.canvas;
+
+    canvas.width = self.window.innerWidth - 20;
+    canvas.height = self.window.innerHeight - 50;
+
+    Particle.rescale_for_canvas(canvas);
+    this.cross_hair_radius = Particle.prototype.canvas_chunk * 2.5;
+
+    this.resize = false;
+};
+
 
 ExploderCanvasAnimation.prototype.animate = function animate() {
+    if (this.resize){ this.do_resize(); }
+
     context = this.canvas.getContext('2d');
     this.getTime();
     // update
