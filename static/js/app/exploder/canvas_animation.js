@@ -119,7 +119,7 @@ ExploderCanvasAnimation.prototype.animate = function animate() {
 ExploderCanvasAnimation.prototype.start = function start(img_src) {
     this.image = new Image();
 
-    this.image.onLoad = function onLoad() {
+    this.image.onload = function onLoad() {
         var self = exploder_app.animation;
         var canvas = exploder_app.canvas;
         var image = exploder_app.image;
