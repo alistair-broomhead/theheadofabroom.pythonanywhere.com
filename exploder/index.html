@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="js/lib/particles.js"></script>
+    <script src="js/lib/canvas_animation.js"></script>
+    <script src="js/lib/mouse.js"></script>
+    <script src="js/lib/touch.js"></script>
+    <script src="js/lib/input.js"></script>
+    <!-- script src="js/exploder.js"></script -->
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+<!-- div> <p id="touches">?</p> </div -->
+<div> <canvas id="gameCanvas" height="400", width="600"/> </div>
+<script>
+
+    window.requestAnimFrame = (function _requestAnimFrame(callback) {
+        return window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function (callback) {
+                window.setTimeout(callback, 1000 / 60);
+            };
+    })();
+
+    document.app_namespace = {
+        canvas: document.getElementById("gameCanvas"),
+        window: window
+    };
+    var _ = document.app_namespace;
+
+    _.input = new Input;
+    _.animation = new CanvasAnimation;
+    _.animation.start('res/jpg/flash.jpg');
+
+</script>
+  
+</body>
+</html>
