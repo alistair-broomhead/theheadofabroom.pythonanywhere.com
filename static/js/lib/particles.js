@@ -134,9 +134,6 @@ Particle.prototype.update = function (timeDiff) {
     var pos = this.index;
     var v = this.velocity;
 
-    pos.x += v.x / 10;
-    pos.y += v.y / 10;
-
     if (this.is_rolling) {
         if (v.x > 0) {
             v.x -= floorFriction;
@@ -181,4 +178,7 @@ Particle.prototype.update = function (timeDiff) {
             this.is_rolling = true;
         }
     }
+
+    pos.x += v.x / 10;
+    pos.y += v.y / 10;
 };

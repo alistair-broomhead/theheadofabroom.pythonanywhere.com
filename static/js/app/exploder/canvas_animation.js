@@ -95,6 +95,13 @@ ExploderCanvasAnimation.prototype.getTime = function getTime(){
     }
     this.time.current = now;
     this.time.period = this.time.current - this.time.previous;
+
+    // If we leave the window for a while, and it pauses, then
+    // our rough and ready model of gravity doesn't hold up.
+    // Instead we treat a long delay as a pause: effectively
+    // the particles pause when not updated fro more than 0.5 sec
+    const max = 0.5;
+    if (this.time.period > max){ this.time.period = max; }
 };
 
 ExploderCanvasAnimation.prototype.requestAnimFrame = function _requestAnimFrame(){
