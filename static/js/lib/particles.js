@@ -124,61 +124,51 @@ Particle.prototype.explode = function (factor) {
     this.is_rolling = false;
 };
 
+Particle.prototype.coefficients = {
+    gravity: 0.015,
+    friction: 0.5,
+    elasticity: 0.3,
+    velocity: 0.1
+};
 Particle.prototype.update = function (timeDiff) {
     if (this.is_locked) { return; }
 
-    var floorFriction = 0.01 * timeDiff;
-    var gravity = 0.015 * timeDiff;
-    var collisionDamper = 3;
-
-    var pos = this.index;
+    var prev_pos = { x: this.index.x, y: this.index.y };
     var v = this.velocity;
 
     if (this.is_rolling) {
-        if (v.x > 0) {
-            v.x -= floorFriction;
-            if (v.x <= 0) {
-                this.is_locked = true;
-            }
-        } else {
-            v.x += floorFriction;
-            if (v.x >= 0) {
-                this.is_locked = true;
-            }
+        // Apply friction against the floor until the particle
+        // comes to rest;
+        var friction = this.coefficients.friction * timeDiff;
+        if (0 - friction < v.x < friction){
+            v.x = 0;
+            this.is_locked = true;
+            return;
         }
-        // if out of bounds
-        if (pos.x < 0 || pos.x > this.limits.x) {
-            v.x *= -1;
-        }
+        v.x /= friction;
     } else {
-        v.y += gravity;
-        // if out of bounds
-        if (pos.x > this.limits.x) {
-            pos.x = this.limits.x;
-            v.x /= collisionDamper;
-            v.x *= -1;
-        } else if (pos.x < 0) {
-            pos.x = 0;
-            v.x /= collisionDamper;
-            v.x *= -1;
-        }
-
-        if (pos.y > this.limits.y) {
-            pos.y = this.limits.y;
-            v.y *= -1 / collisionDamper;
-        } else if (pos.x < 0) {
-            pos.y = 0;
-            v.y *= -1 / collisionDamper;
-        }
-
         //if particle is about to roll on floor ...
-        if (Math.abs(v.y) < 0.5 && pos.y > this.limits.y) {
-            pos.y = this.limits.y;
+        if (Math.abs(v.y) < 0.5 && this.index.y > this.limits.y - 0.25) {
+            this.index.y = this.limits.y;
             v.y = 0;
             this.is_rolling = true;
+        } else { // apply gravity
+            v.y += this.coefficients.gravity * timeDiff;
         }
     }
 
-    pos.x += v.x / 10;
-    pos.y += v.y / 10;
+    this.index.x += v.x * this.coefficients.velocity;
+    this.index.y += v.y * this.coefficients.velocity;
+
+    // if hit a wall
+    if (this.index.x <= 0 || this.index.x >= this.limits.x) {
+        v.x *= -1 * this.coefficients.elasticity;
+        this.index.x = prev_pos.x;
+    }
+    // if hit floor or ceiling
+    if (this.index.y > this.limits.y || this.index.x < 0) {
+        v.y *= -1 * this.coefficients.elasticity;
+        this.index.y = prev_pos.y;
+    }
+
 };
