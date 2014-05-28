@@ -17,13 +17,11 @@ class Site(object):
 
     @property
     def _site_cfg(self):
-        try:
-            with self.files.open('site.json') as jsonfile:
-                ret = load(jsonfile)
-            self.environment.globals['site'] = ret
-            return ret
-        except OSError:
-            return {}
+        json_file_name = self.files.lookup('site.json')
+        with open(json_file_name) as json_file:
+            ret = load(json_file)
+        self.environment.globals['site'] = ret
+        return ret
 
     @property
     def apps(self):
