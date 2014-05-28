@@ -33,7 +33,7 @@
 
             els.max_content_size = function max_content_size(){
                 return {
-                    w: this.content.clientWidth,
+                    w: this.content.clientWidth - 20,
                     h: this.wrapper.clientHeight - this.header.clientHeight - this.footer.clientHeight
                 }
             };
