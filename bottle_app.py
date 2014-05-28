@@ -1,28 +1,28 @@
-from theheadofabroom import Apps, micro_html
+from os import path
+from theheadofabroom import Site, Apps, micro_html
+
+SITE = Site(root=path.abspath(__file__))
+APPS = Apps(SITE)
 
 
-@Apps.Home()
+@APPS.Home()
 def home(context, template):
     return template.render(context)
 
 
-@Apps.Exploder()
+@APPS.Exploder()
 def exploder(context, template):
     return template.render(context)
 
 
 # noinspection PyUnusedLocal
-@Apps.Message()
+@APPS.Message()
 def message(context, template):
-    Apps.redirect('/'.join((
-        context['page']['url'],
-        'Hello, World!',
-        'Try changing the url, to see how it affects the page'
-    )))
+    APPS.redirect()
 
 
-@Apps.Message(sub='/<msg>')
-@Apps.Message(sub='/<msg>/<body:path>')
+@APPS.Message(sub='/<msg>')
+@APPS.Message(sub='/<msg>/<body:path>')
 def message(context, template, msg, body=''):
     document = micro_html.HTML()
     if msg:
@@ -40,8 +40,8 @@ def message(context, template, msg, body=''):
 if False:
     # For local debugging - on pythonanywhere.com
     # these are served outside of bottle
-    Apps.statics('/static/', '<path:path>')
+    APPS.statics('/static/', '<path:path>')
 
 
-Apps.start()
+APPS.start()
 

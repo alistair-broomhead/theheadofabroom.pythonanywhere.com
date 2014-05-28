@@ -1,20 +1,28 @@
 from os import path
 from json import load
-from bottle import ResourceManager
+from bottle import default_app, ResourceManager
 from jinja2 import Environment, FileSystemLoader
 
 
 class Site(object):
-    app_root = path.abspath(path.dirname(path.dirname(__file__)))
-    files = ResourceManager(base=app_root+'/')
-    files.add_path(path='static/')
-    files.add_path(path='static/json/')
 
-    _site_cfg = load(files.open('site.json'))
+    def __init__(self, root):
+        self.app_root = path.dirname(root)
+        self.files = ResourceManager(base=root)
+        self.files.add_path(path='static/')
+        self.files.add_path(path='static/json/')
 
-    apps = _site_cfg['apps']
+        self.environment = Environment(
+            loader=FileSystemLoader(
+                searchpath=path.join(self.app_root, 'template')))
 
-    environment = Environment(
-        loader=FileSystemLoader(
-            searchpath=path.join(app_root, 'template')))
-    environment.globals['site'] = _site_cfg
+    @property
+    def _site_cfg(self):
+        with self.files.open('site.json') as jsonfile:
+            ret = load(jsonfile)
+        self.environment.globals['site'] = ret
+        return ret
+
+    @property
+    def apps(self):
+        return self._site_cfg['apps']
