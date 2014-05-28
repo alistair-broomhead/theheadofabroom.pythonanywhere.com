@@ -14,11 +14,11 @@ class Apps(object):
     def __init__(self, site):
         super(Apps, self).__init__()
         self.site = site
-        self._apps = {app['name']: App(**app) for app in site.apps}
+        self._apps = {app['name']: App(site=self.site, **app) for app in site.apps}
 
     @staticmethod
-    def start():
-        run(reloader=True)
+    def start(*args, **kwargs):
+        run(*args, reloader=True, **kwargs)
 
     def statics(self, root, path_spec):
         @route(root+path_spec)

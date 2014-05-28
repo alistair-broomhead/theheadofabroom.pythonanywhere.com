@@ -18,7 +18,11 @@ def exploder(context, template):
 # noinspection PyUnusedLocal
 @APPS.Message()
 def message(context, template):
-    APPS.redirect()
+    APPS.redirect('/'.join((
+        context['page']['url'],
+        'Hello, World!',
+        'Try changing the url, to see how it affects the page'
+    )))
 
 
 @APPS.Message(sub='/<msg>')

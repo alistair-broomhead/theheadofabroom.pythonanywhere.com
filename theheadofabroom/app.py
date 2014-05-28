@@ -5,11 +5,12 @@ from bottle import route
 
 
 class App(object):
-    def __init__(self, name, url, template, **kwargs):
+    def __init__(self, name, url, template, site, **kwargs):
         self.name = name
         self.url = url
+        self.site = site
         try:
-            self.template = Site.environment.get_template(template)
+            self.template = site.environment.get_template(template)
         except (TemplateNotFound, AttributeError):
             self.template = None
         self._context = {}
