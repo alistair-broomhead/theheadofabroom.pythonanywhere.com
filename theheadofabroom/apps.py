@@ -1,7 +1,7 @@
 from app import App
 from site_wide import Site
 from abc import ABCMeta
-from bottle import Bottle, static_file, redirect
+from bottle import default_app, static_file, redirect, run, route
 
 
 class AppsMeta(ABCMeta):
@@ -15,14 +15,13 @@ class AppsMeta(ABCMeta):
 
     def __init__(cls, name, bases, dct):
         super(AppsMeta, cls).__init__(name, bases, dct)
-        cls._server = Bottle()
-        cls._apps = {app['name']: App(server=cls._server, **app) for app in Site.apps}
+        cls._apps = {app['name']: App(**app) for app in Site.apps}
 
     def start(cls):
-        cls._server.run()
+        run()
 
     def statics(cls, root, path_spec):
-        @cls._server.route(root+path_spec)
+        @route(root+path_spec)
         def serve_statics(path):
             return static_file(Site.files.lookup(path), '.')
         return serve_statics

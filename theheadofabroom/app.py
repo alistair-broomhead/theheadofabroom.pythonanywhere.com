@@ -1,13 +1,13 @@
 from functools import wraps
 from jinja2 import TemplateNotFound
 from site_wide import Site
+from bottle import route
 
 
 class App(object):
-    def __init__(self, name, url, template, server, **kwargs):
+    def __init__(self, name, url, template, **kwargs):
         self.name = name
         self.url = url
-        self._server = server
         try:
             self.template = Site.environment.get_template(template)
         except (TemplateNotFound, AttributeError):
@@ -39,7 +39,7 @@ class App(object):
             url += sub
 
         def bind_decorator(fn):
-            @self._server.route(url, *args, **kwargs)
+            @route(url, *args, **kwargs)
             @wraps(fn)
             def inner(*fn_args, **fn_kwargs):
                 fn_kwargs['template'] = self.template
