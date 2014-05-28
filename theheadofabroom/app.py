@@ -1,6 +1,5 @@
 from functools import wraps
 from jinja2 import TemplateNotFound
-from site_wide import Site
 from bottle import route
 
 

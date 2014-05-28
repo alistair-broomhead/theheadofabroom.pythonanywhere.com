@@ -41,11 +41,8 @@ def message(context, template, msg, body=''):
     context['document'] = str(document)
     return template.render(context)
 
-if False:
+if __name__ == '__main__':
     # For local debugging - on pythonanywhere.com
     # these are served outside of bottle
     APPS.statics('/static/', '<path:path>')
-
-
-APPS.start()
-
+    APPS.start(host='0.0.0.0')

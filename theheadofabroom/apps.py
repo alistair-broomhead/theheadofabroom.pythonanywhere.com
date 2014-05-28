@@ -12,7 +12,6 @@ class Apps(object):
         return self._apps[item].route
 
     def __init__(self, site):
-        super(Apps, self).__init__()
         self.site = site
         self._apps = {app['name']: App(site=self.site, **app) for app in site.apps}
 

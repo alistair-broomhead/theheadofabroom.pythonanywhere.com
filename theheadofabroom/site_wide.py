@@ -1,11 +1,10 @@
 from os import path
 from json import load
-from bottle import default_app, ResourceManager
+from bottle import ResourceManager
 from jinja2 import Environment, FileSystemLoader
 
 
 class Site(object):
-
     def __init__(self, root):
         self.app_root = path.dirname(root)
         self.files = ResourceManager(base=root)
@@ -18,10 +17,13 @@ class Site(object):
 
     @property
     def _site_cfg(self):
-        with self.files.open('site.json') as jsonfile:
-            ret = load(jsonfile)
-        self.environment.globals['site'] = ret
-        return ret
+        try:
+            with self.files.open('site.json') as jsonfile:
+                ret = load(jsonfile)
+            self.environment.globals['site'] = ret
+            return ret
+        except OSError:
+            return {}
 
     @property
     def apps(self):
