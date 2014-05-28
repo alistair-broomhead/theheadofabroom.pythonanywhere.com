@@ -8,16 +8,53 @@
     <!-- App objects -->
     <script src="/static/js/app/exploder/canvas_animation.js"></script>
     <script src="/static/js/app/exploder/exploder.js"></script>
+    <style>
+        #content {
+            width: 100%;
+            margin-left : 0;
+            padding-left : 0;
+        }
+    </style>
 {% endblock %}
 {% block content %}
-    <div>
-        <canvas id="gameCanvas" height="400" width="600"></canvas>
-    </div>
+    <canvas id="gameCanvas" height="400" width="600"></canvas>
 {% endblock %}
 
     {% block onload %}
         <script>
-            document.getElementById('spacer').height = 0;
-            exploder_app.start(document, window, 'gameCanvas', '/static/jpg/flash.jpg');
+            var els = {
+                wrapper: document.getElementById('wrapper'),
+                header: document.getElementById('header'),
+                content: document.getElementById('content'),
+                footer: document.getElementById('footer'),
+                spacer: document.getElementById('spacer'),
+                canvas: document.getElementById('gameCanvas')
+            };
+
+            els.max_content_size = function max_content_size(){
+                return {
+                    w: this.content.clientWidth,
+                    h: this.wrapper.clientHeight - this.header.clientHeight - this.footer.clientHeight
+                }
+            };
+
+            els.resize_canvas_to_fill = function resize_canvas_to_fill(){
+                this.spacer.height = 0;
+                var max_content_size = this.max_content_size();
+                this.canvas.height = max_content_size.h;
+                this.canvas.width = max_content_size.w
+            };
+            els.respace_to_fill = function respace_to_fill(){
+
+                this.spacer.height += this.wrapper.clientHeight
+                                    - this.header.clientHeight
+                                    - this.content.clientHeight
+                                    - this.footer.clientHeight;
+
+                if (this.spacer.height < 0){ this.spacer.height = 0; }
+            };
+
+            els.spacer.height = 0;
+            exploder_app.start(document, window, els, '/static/jpg/flash.jpg');
         </script>
     {% endblock %}

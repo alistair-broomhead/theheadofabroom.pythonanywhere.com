@@ -7,9 +7,7 @@ exploder_app = {
     animation: undefined
 };
 
-exploder_app.start = function(document, window,
-                              canvas_id,
-                              image_url){
+exploder_app.start = function(document, window, els, image_url){
 
     window.requestAnimFrame = (function _requestAnimFrame(callback) {
         return window.requestAnimationFrame ||
@@ -22,12 +20,12 @@ exploder_app.start = function(document, window,
             };
     })();
 
-    this.canvas = document.getElementById(canvas_id);
+    this.canvas = els.canvas;
     this.window = window;
 
     this.input = new Input(this.window, this.canvas);
     var anim = this.animation = new ExploderCanvasAnimation(
-        this.window, this.canvas, this.input);
+        this.window, els, this.input);
 
     window.addEventListener("resize",function(){ anim.resize = true; });
 

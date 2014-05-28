@@ -1,7 +1,8 @@
-function ExploderCanvasAnimation(window, canvas, input) {
+function ExploderCanvasAnimation(window, els, input) {
     this.window = window;
-    this.canvas = canvas;
+    this.canvas = els.canvas;
     this.input = input;
+    this.els = els;
 }
 
 ExploderCanvasAnimation.prototype = {
@@ -110,14 +111,10 @@ ExploderCanvasAnimation.prototype.requestAnimFrame = function _requestAnimFrame(
 };
 
 ExploderCanvasAnimation.prototype.do_resize = function do_resize(){
-    const canvas = this.canvas;
-
-    canvas.width = self.window.innerWidth - 10;
-    canvas.height = self.window.innerHeight - 20;
-
-    Particle.rescale_for_canvas(canvas);
+    this.els.resize_canvas_to_fill();
+    Particle.rescale_for_canvas(this.canvas);
     this.cross_hair_radius = Particle.prototype.canvas_chunk * 2.5;
-
+    this.els.respace_to_fill();
     this.resize = false;
 };
 

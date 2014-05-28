@@ -39,6 +39,8 @@
             spacer.height += wrapper.clientHeight - (header.clientHeight +
                                                      content.clientHeight +
                                                      footer.clientHeight);
+
+            if (spacer.height < 0){ spacer.height = 0; }
         </script>
     {% endblock %}
 </body>
