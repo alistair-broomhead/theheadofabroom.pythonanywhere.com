@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+{% set site_name = site.get('name') %}
+{% set page_name = page.get('name') %}
+<head>
+    <title> {{ site_name }} | {{ page_name }} </title>
+    <link type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+        {% block head %}{% endblock %}
+</head>
+<body id="wrapper">
+    <div id="header">
+        <h1> {{ site_name }} | {{ page_name }} </h1>
+        <div id="nav">
+            {% for app in site.get('apps') %}
+                {% set app_name = app.get('name') %}
+                {% set app_url = app.get('url') %}
+                <a href="{{ app_url }}"
+                   {%  if app_name == page_name %} class="nav.current"
+                   {% else %} class="nav.other" {%  endif %} >{{ app_name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+        <canvas id="spacer" width="0"></canvas>
+    </div>
+    <div id="footer">
+        © Copyright {{ site.get('copyright_year') }} {{ site.get('author') }}
+    </div>
+    {% block onload %}
+        <script>
+            var wrapper = document.getElementById('wrapper');
+            var header = document.getElementById('header');
+            var content = document.getElementById('content');
+            var footer = document.getElementById('footer');
+            var spacer = document.getElementById('spacer');
+
+            spacer.height += wrapper.clientHeight - (header.clientHeight +
+                                                     content.clientHeight +
+                                                     footer.clientHeight);
+        </script>
+    {% endblock %}
+</body>
+</html>

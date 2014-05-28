@@ -1,0 +1,25 @@
+{
+    "name": "theheadofabroom.pythonanywhere.com",
+    "copyright_year": 2014,
+    "author": "Alistair Broomhead",
+    "apps": [
+        {
+            "name": "Home",
+            "url": "/",
+            "template": "home.html",
+            "description": null
+        },
+        {
+            "name": "Exploder",
+            "url": "/exploder",
+            "template": "exploder.html",
+            "description": "A JavaScript/canvas particle experiment"
+        },
+        {
+            "name": "Message",
+            "url": "/message",
+            "template": "message.html",
+            "description": "A simple test of a python HTML micro-framework"
+        }
+    ]
+}

@@ -2,8 +2,7 @@ from contextlib import contextmanager
 
 
 class Tag(object):
-
-    _indent = ' '*4
+    _indent = ' ' * 4
     _single = '{0.indent}<{0.open}/>\n'
     _open = '{0.indent}<{0.open}>\n'
     _close = '{0.indent}</{0.name}>\n'
@@ -30,13 +29,13 @@ class Tag(object):
         return Tag(tag_name, self.indent + self._indent, **kwargs)
 
     @property
-    def innerHTML(self):
+    def inner_html(self):
         return ''.join(str(x) for x in self.raw)
 
-    @innerHTML.setter
-    def innerHTML(self, value):
+    @inner_html.setter
+    def inner_html(self, value):
         value = str(value)
-        if value [0] != ' ':
+        if value[0] != ' ':
             value = self.indent + self._indent + value
         if value[-1] != '\n':
             value += '\n'
@@ -44,7 +43,7 @@ class Tag(object):
 
     def add(self, value):
         value = str(value)
-        if value [0] != ' ':
+        if value[0] != ' ':
             value = self.indent + self._indent + value
         if value[-1] != '\n':
             value += '\n'
@@ -53,11 +52,10 @@ class Tag(object):
     def __str__(self):
         if self.raw:
             return ''.join([self._open.format(self),
-                            self.innerHTML,
+                            self.inner_html,
                             self._close.format(self)])
         else:
             return self._single.format(self)
-
 
 
 class HTML(object):

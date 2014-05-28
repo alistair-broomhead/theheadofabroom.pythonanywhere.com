@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block head %}
+    <!-- Shared libs -->
+    <script src="/static/js/lib/particles.js"></script>
+    <script src="/static/js/lib/mouse.js"></script>
+    <script src="/static/js/lib/touch.js"></script>
+    <script src="/static/js/lib/input.js"></script>
+    <!-- App objects -->
+    <script src="/static/js/app/exploder/canvas_animation.js"></script>
+    <script src="/static/js/app/exploder/exploder.js"></script>
+{% endblock %}
+{% block content %}
+    <div>
+        <canvas id="gameCanvas" height="400" width="600"></canvas>
+    </div>
+{% endblock %}
+
+    {% block onload %}
+        <script>
+            document.getElementById('spacer').height = 0;
+            exploder_app.start(document, window, 'gameCanvas', '/static/jpg/flash.jpg');
+        </script>
+    {% endblock %}

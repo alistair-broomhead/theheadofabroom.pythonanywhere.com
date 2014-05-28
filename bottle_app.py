@@ -1,50 +1,47 @@
-from bottle import default_app, route, redirect
-from micro_html import HTML
+from theheadofabroom import Apps, micro_html
 
-@route('/')
-def hello_world():
-    document = HTML()
-    with document.head.tag('title') as title:
-        with document.body.tag('h1') as heading:
-            heading.innerHTML = title.innerHTML = 'Welcome!'
-    with document.body.tag('p') as paragraph:
-        paragraph.add("There's not much here right now, but feel free to check "
-                      "back later!")
-    with document.body.tag('br'):
-        pass
-    with document.body.tag('h2') as heading:
-        heading.innerHTML = 'Live projects'
-    with document.body.tag('list') as projects:
-        with projects.tag('li') as item:
-            with item.tag('a', href='exploder') as link:
-                link.innerHTML = 'Exploder - a JavaScript particle experiment'
-        with projects.tag('li') as item:
-            with item.tag('a', href='message/Hello/Hello, world') as link:
-                link.innerHTML = 'Message - a simple test of a python HTML '\
-                                 'micro-framework'
-    return str(document)
 
-@route('/message/<msg>')
-def message(msg):
-    redirect('/message/{0}/'.format(msg))
+@Apps.Home()
+def home(context, template):
+    return template.render(context)
 
-@route('/message/<msg>/<body:path>')
-def message_with_body(msg, body):
-    document = HTML()
+
+@Apps.Exploder()
+def exploder(context, template):
+    return template.render(context)
+
+
+# noinspection PyUnusedLocal
+@Apps.Message()
+def message(context, template):
+    Apps.redirect('/'.join((
+        context['page']['url'],
+        'Hello, World!',
+        'Try changing the url, to see how it affects the page'
+    )))
+
+
+@Apps.Message(sub='/<msg>')
+@Apps.Message(sub='/<msg>/<body:path>')
+def message(context, template, msg, body=''):
+    document = micro_html.HTML()
     if msg:
         with document.head.tag('title') as title:
-            title.innerHTML = msg
+            title.inner_html = msg
         with document.body.tag('h1') as heading:
-            heading.innerHTML = msg
+            heading.inner_html = msg
     if body:
         body = body.replace('/n', '<br/>')
         with document.body.tag('p') as paragraph:
-            paragraph.innerHTML = body
-    return str(document)
+            paragraph.inner_html = body
+    context['document'] = str(document)
+    return template.render(context)
 
-@route('/exploder')
-def route_to_exploder():
-    redirect('/exploder/')
+if False:
+    # For local debugging - on pythonanywhere.com
+    # these are served outside of bottle
+    Apps.statics('/static/', '<path:path>')
 
-application = default_app()
+
+Apps.start()
 

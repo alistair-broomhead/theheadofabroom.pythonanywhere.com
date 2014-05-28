@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1> Welcome! </h1>
+    <p> There's not much here right now, but feel free to check back later! </p>
+    <br/>
+    <h2> Live projects </h2>
+    <list>
+        {% for app in site.get('apps') %}
+            {% if 'description' in app %}
+                <li>
+                    <a href="{{ app.get('url') }}">
+                        {{ app.get('name') }} - {{ app.get('description') }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </list>
+{% endblock %}
