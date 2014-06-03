@@ -4,13 +4,31 @@
 {% set page_name = page.get('name') %}
 <head>
     <title> {{ site_name }} | {{ page_name }} </title>
-    <link type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font-size.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/gh-fork-ribbon.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-        {% block head %}{% endblock %}
+    {% block head %}{% endblock %}
 </head>
 <body id="wrapper">
-    <div id="header">
-        <h1> {{ site_name }} | {{ page_name }} </h1>
+    <div id="page-mid">
+        <div id="sidebar">
+            {% block sidebar %}
+            {% endblock %}
+        </div>
+        {% block content_div %}
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        {% endblock %}
+    </div>
+    <small id="footer">
+        © Copyright {{ site.get('copyright_year') }} {{ site.get('author') }}
+    </small>
+    <div id="page-top">
+        <div id="header">
+            <h1> {{ site_name }} | {{ page_name }} </h1>
+            <span id="forkongithub"><a href="https://github.com/alistair-broomhead/theheadofabroom.pythonanywhere.com">Fork me on GitHub</a></span>
+        </div>
         <div id="nav">
             {% for app in site.get('apps') %}
                 {% set app_name = app.get('name') %}
@@ -21,27 +39,7 @@
             {% endfor %}
         </div>
     </div>
-    <div id="content">
-        {% block content %}{% endblock %}
-        <canvas id="spacer" width="0"></canvas>
-    </div>
-    <div id="footer">
-        © Copyright {{ site.get('copyright_year') }} {{ site.get('author') }}
-    </div>
     {% block onload %}
-        <script>
-            var wrapper = document.getElementById('wrapper');
-            var header = document.getElementById('header');
-            var content = document.getElementById('content');
-            var footer = document.getElementById('footer');
-            var spacer = document.getElementById('spacer');
-
-            spacer.height += wrapper.clientHeight - (header.clientHeight +
-                                                     content.clientHeight +
-                                                     footer.clientHeight);
-
-            if (spacer.height < 0){ spacer.height = 0; }
-        </script>
     {% endblock %}
 </body>
 </html>

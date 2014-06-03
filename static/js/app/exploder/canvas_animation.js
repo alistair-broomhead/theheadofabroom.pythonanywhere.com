@@ -114,7 +114,6 @@ ExploderCanvasAnimation.prototype.do_resize = function do_resize(){
     this.els.resize_canvas_to_fill();
     Particle.rescale_for_canvas(this.canvas);
     this.cross_hair_radius = Particle.prototype.canvas_chunk * 2.5;
-    this.els.respace_to_fill();
     this.resize = false;
 };
 

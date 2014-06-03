@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-    <iframe id="content_iframe" width="100%" height="100%"></iframe>
+    {{ document }}
     <script>
-        function hereDoc(f) {
-            return f.toString().
-                    replace(/^[^\/]+\/\*!?/, '').
-                    replace(/\*\/[^\/]+$/, '');
+        var titles = document.getElementById("content")
+                             .getElementsByTagName("title");
+        if (titles.length > 0){
+            document.title = titles[0].text;
         }
-        var desired = hereDoc(function(){/* {{ document }} */});
-        document.getElementById("content_iframe").src = "data:text/html;charset=utf-8," + escape(desired);
     </script>
 {% endblock %}

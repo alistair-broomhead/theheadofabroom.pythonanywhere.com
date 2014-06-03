@@ -33,3 +33,27 @@ exploder_app.start = function(document, window, els, image_url){
 
     this.image = this.animation.image;
 };
+function run(document, window){
+var els = {
+        wrapper: document.getElementById('wrapper'),
+        header: document.getElementById('header'),
+        content: document.getElementById('content'),
+        footer: document.getElementById('footer'),
+        canvas: document.getElementById('gameCanvas')
+    };
+
+    els.max_content_size = function max_content_size(){
+        return {
+            w: this.content.clientWidth - 20,
+            h: this.content.clientHeight - 20
+        }
+    };
+
+    els.resize_canvas_to_fill = function resize_canvas_to_fill(){
+        var max_content_size = this.max_content_size();
+        this.canvas.height = max_content_size.h;
+        this.canvas.width = max_content_size.w
+    };
+
+    exploder_app.start(document, window, els, '/static/jpg/flash.jpg');
+}
