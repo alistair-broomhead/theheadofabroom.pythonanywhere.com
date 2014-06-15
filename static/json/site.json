@@ -7,7 +7,7 @@
             "name": "Home",
             "url": "/",
             "template": "home.html",
-            "description": null
+            "description": "This page"
         },
         {
             "name": "Exploder",

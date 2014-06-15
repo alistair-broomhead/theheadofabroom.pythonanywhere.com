@@ -35,6 +35,15 @@ body {
     padding : 0;
     margin : 0;
 }
+
+hr {
+    margin : 1em;
+}
+
+li {
+    padding: 0.5em;
+}
+
 html,
 body {
 	height:100%;
