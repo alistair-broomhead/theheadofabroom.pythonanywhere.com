@@ -4,6 +4,11 @@ from bottle import route
 
 
 class App(object):
+
+    def get_template(self, template):
+        try:
+            return self.site.
+
     def __init__(self, name, url, template, site, **kwargs):
         self.name = name
         self.url = url

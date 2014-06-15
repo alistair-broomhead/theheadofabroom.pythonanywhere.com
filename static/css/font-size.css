@@ -1,213 +1,714 @@
 /*
 An utter bastardisation of https://github.com/pavelkukov/Font-Size-Responsive-CSS
 */
-h1 { font-size: 40px; }
-h2 { font-size: 34px; }
-h3 { font-size: 30px; }
-h4 { font-size: 29px; }
-h5 { font-size: 28px; }
-h6 { font-size: 21px; }
-body { font-size: 17px; }
-small { font-size: 15px; }
-
-@media all and (min-width: 1100px){
-	h1{ font-size: 2.4vw; }
-	h2{ font-size: 1.95vw; }
-	h3{ font-size: 1.8vw; }
-	h4{ font-size: 1.7vw; }
-	h5{ font-size: 1.55vw; }
-	h6{ font-size: 1.3vw; }
-	body{ font-size: 1.05vw; }
-	small{ font-size: 0.95vw; }
+h1 {
+    font-size: 40px;
 }
 
-@media all and (max-width: 2100px){
-	h1 { font-size: 49px; }
-	h2 { font-size: 41px; }
-	h3 { font-size: 39px; }
-	h4 { font-size: 37px; }
-	h5 { font-size: 35px; }
-	h6 { font-size: 27px; }
-	body { font-size: 22px; }
-	small { font-size: 19px; }
+h2 {
+    font-size: 34px;
 }
-@media all and (max-width: 2000px){
-	h1 { font-size: 47px; }
-	h2 { font-size: 39px; }
-	h3 { font-size: 37px; }
-	h4 { font-size: 35px; }
-	h5 { font-size: 33px; }
-	h6 { font-size: 26px; }
-	body { font-size: 22px; }
-	small { font-size: 18px; }
+
+h3 {
+    font-size: 30px;
 }
-@media all and (max-width: 1900px){
-	h1 { font-size: 44px; }
-	h2 { font-size: 38px; }
-	h3 { font-size: 36px; }
-	h4 { font-size: 34px; }
-	h5 { font-size: 31px; }
-	h6 { font-size: 25px; }
-	body { font-size: 20px; }
-	small { font-size: 17px; }
+
+h4 {
+    font-size: 29px;
 }
-@media all and (max-width: 1800px){
-	h1 { font-size: 42px; }
-	h2 { font-size: 35px; }
-	h3 { font-size: 33px; }
-	h4 { font-size: 31px; }
-	h5 { font-size: 29px; }
-	h6 { font-size: 23px; }
-	body { font-size: 19px; }
-	small { font-size: 17px; }
+
+h5 {
+    font-size: 28px;
 }
-@media all and (max-width: 1700px){
-	h1 { font-size: 39px; }
-	h2 { font-size: 33px; }
-	h3 { font-size: 31px; }
-	h4 { font-size: 29px; }
-	h5 { font-size: 27px; }
-	h6 { font-size: 22px; }
-	body { font-size: 18px; }
-	small { font-size: 16px; }
+
+h6 {
+    font-size: 21px;
 }
-@media all and (max-width: 1600px){
-	h1 { font-size: 38px; }
-	h2 { font-size: 31px; }
-	h3 { font-size: 29px; }
-	h4 { font-size: 27px; }
-	h5 { font-size: 25px; }
-	h6 { font-size: 21px; }
-	body { font-size: 17px; }
-	small { font-size: 15px; }
+
+body {
+    font-size: 17px;
 }
-@media all and (max-width: 1500px){
-	h1 { font-size: 35px; }
-	h2 { font-size: 30px; }
-	h3 { font-size: 28px; }
-	h4 { font-size: 26px; }
-	h5 { font-size: 24px; }
-	h6 { font-size: 20px; }
-	body { font-size: 17px; }
-	small { font-size: 14px; }
+
+small {
+    font-size: 15px;
 }
-@media all and (max-width: 1400px){
-	h1 { font-size: 33px; }
-	h2 { font-size: 27px; }
-	h3 { font-size: 25px; }
-	h4 { font-size: 23px; }
-	h5 { font-size: 21px; }
-	h6 { font-size: 18px; }
-	body { font-size: 15px; }
-	small { font-size: 13px; }
+
+@media all and (min-width: 1100px) {
+    h1 {
+        font-size: 2.4vw;
+    }
+
+    h2 {
+        font-size: 1.95vw;
+    }
+
+    h3 {
+        font-size: 1.8vw;
+    }
+
+    h4 {
+        font-size: 1.7vw;
+    }
+
+    h5 {
+        font-size: 1.55vw;
+    }
+
+    h6 {
+        font-size: 1.3vw;
+    }
+
+    body {
+        font-size: 1.05vw;
+    }
+
+    small {
+        font-size: 0.95vw;
+    }
 }
-@media all and (max-width: 1300px){
-	h1 { font-size: 31px; }
-	h2 { font-size: 25px; }
-	h3 { font-size: 23px; }
-	h4 { font-size: 21px; }
-	h5 { font-size: 19px; }
-	h6 { font-size: 17px; }
-	body { font-size: 14px; }
-	small { font-size: 12px; }
+
+@media all and (max-width: 2100px) {
+    h1 {
+        font-size: 49px;
+    }
+
+    h2 {
+        font-size: 41px;
+    }
+
+    h3 {
+        font-size: 39px;
+    }
+
+    h4 {
+        font-size: 37px;
+    }
+
+    h5 {
+        font-size: 35px;
+    }
+
+    h6 {
+        font-size: 27px;
+    }
+
+    body {
+        font-size: 22px;
+    }
+
+    small {
+        font-size: 19px;
+    }
 }
-@media all and (max-width: 1200px){
-	h1 { font-size: 28px; }
-	h2 { font-size: 24px; }
-	h3 { font-size: 22px; }
-	h4 { font-size: 20px; }
-	h5 { font-size: 18px; }
-	h6 { font-size: 16px; }
-	body { font-size: 13px; }
-	small { font-size: 12px; }
+
+@media all and (max-width: 2000px) {
+    h1 {
+        font-size: 47px;
+    }
+
+    h2 {
+        font-size: 39px;
+    }
+
+    h3 {
+        font-size: 37px;
+    }
+
+    h4 {
+        font-size: 35px;
+    }
+
+    h5 {
+        font-size: 33px;
+    }
+
+    h6 {
+        font-size: 26px;
+    }
+
+    body {
+        font-size: 22px;
+    }
+
+    small {
+        font-size: 18px;
+    }
 }
-@media all and (max-width: 1100px){
-	h1 { font-size: 26px; }
-	h2 { font-size: 24px; }
-	h3 { font-size: 22px; }
-	h4 { font-size: 20px; }
-	h5 { font-size: 18px; }
-	h6 { font-size: 16px; }
-	body { font-size: 12px; }
-	small { font-size: 12px; }
+
+@media all and (max-width: 1900px) {
+    h1 {
+        font-size: 44px;
+    }
+
+    h2 {
+        font-size: 38px;
+    }
+
+    h3 {
+        font-size: 36px;
+    }
+
+    h4 {
+        font-size: 34px;
+    }
+
+    h5 {
+        font-size: 31px;
+    }
+
+    h6 {
+        font-size: 25px;
+    }
+
+    body {
+        font-size: 20px;
+    }
+
+    small {
+        font-size: 17px;
+    }
 }
-@media all and (max-width: 1000px){
-	h1 { font-size: 26px; }
-	h2 { font-size: 24px; }
-	h3 { font-size: 22px; }
-	h4 { font-size: 20px; }
-	h5 { font-size: 17px; }
-	h6 { font-size: 15px; }
-	body { font-size: 12px; }
-	small { font-size: 12px; }
+
+@media all and (max-width: 1800px) {
+    h1 {
+        font-size: 42px;
+    }
+
+    h2 {
+        font-size: 35px;
+    }
+
+    h3 {
+        font-size: 33px;
+    }
+
+    h4 {
+        font-size: 31px;
+    }
+
+    h5 {
+        font-size: 29px;
+    }
+
+    h6 {
+        font-size: 23px;
+    }
+
+    body {
+        font-size: 19px;
+    }
+
+    small {
+        font-size: 17px;
+    }
 }
-@media all and (max-width: 900px){
-	h1 { font-size: 25px; }
-	h2 { font-size: 23px; }
-	h3 { font-size: 21px; }
-	h4 { font-size: 19px; }
-	h5 { font-size: 17px; }
-	h6 { font-size: 15px; }
-	body { font-size: 12px; }
-	small { font-size: 12px; }
+
+@media all and (max-width: 1700px) {
+    h1 {
+        font-size: 39px;
+    }
+
+    h2 {
+        font-size: 33px;
+    }
+
+    h3 {
+        font-size: 31px;
+    }
+
+    h4 {
+        font-size: 29px;
+    }
+
+    h5 {
+        font-size: 27px;
+    }
+
+    h6 {
+        font-size: 22px;
+    }
+
+    body {
+        font-size: 18px;
+    }
+
+    small {
+        font-size: 16px;
+    }
 }
-@media all and (max-width: 800px){
-	h1 { font-size: 25px; }
-	h2 { font-size: 23px; }
-	h3 { font-size: 20px; }
-	h4 { font-size: 18px; }
-	h5 { font-size: 16px; }
-	h6 { font-size: 15px; }
-	body { font-size: 12px; }
-	small { font-size: 12px; }
+
+@media all and (max-width: 1600px) {
+    h1 {
+        font-size: 38px;
+    }
+
+    h2 {
+        font-size: 31px;
+    }
+
+    h3 {
+        font-size: 29px;
+    }
+
+    h4 {
+        font-size: 27px;
+    }
+
+    h5 {
+        font-size: 25px;
+    }
+
+    h6 {
+        font-size: 21px;
+    }
+
+    body {
+        font-size: 17px;
+    }
+
+    small {
+        font-size: 15px;
+    }
 }
-@media all and (max-width: 700px){
-	h1 { font-size: 22px; }
-	h2 { font-size: 20px; }
-	h3 { font-size: 18px; }
-	h4 { font-size: 16px; }
-	h5 { font-size: 14px; }
-	h6 { font-size: 13px; }
-	body { font-size: 12px; }
-	small { font-size: 12px; }
+
+@media all and (max-width: 1500px) {
+    h1 {
+        font-size: 35px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 28px;
+    }
+
+    h4 {
+        font-size: 26px;
+    }
+
+    h5 {
+        font-size: 24px;
+    }
+
+    h6 {
+        font-size: 20px;
+    }
+
+    body {
+        font-size: 17px;
+    }
+
+    small {
+        font-size: 14px;
+    }
 }
-@media all and (max-width: 600px){
-	h1 { font-size: 20px; }
-	h2 { font-size: 18px; }
-	h3 { font-size: 16px; }
-	h4 { font-size: 14px; }
-	h5 { font-size: 13px; }
-	h6 { font-size: 12px; }
-	body { font-size: 12px; }
-	small { font-size: 12px; }
+
+@media all and (max-width: 1400px) {
+    h1 {
+        font-size: 33px;
+    }
+
+    h2 {
+        font-size: 27px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    h4 {
+        font-size: 23px;
+    }
+
+    h5 {
+        font-size: 21px;
+    }
+
+    h6 {
+        font-size: 18px;
+    }
+
+    body {
+        font-size: 15px;
+    }
+
+    small {
+        font-size: 13px;
+    }
 }
-@media all and (max-width: 500px){
-	h1 { font-size: 19px; }
-	h2 { font-size: 17px; }
-	h3 { font-size: 15px; }
-	h4 { font-size: 13px; }
-	h5 { font-size: 12px; }
-	h6 { font-size: 12px; }
-	body { font-size: 12px; }
-	small { font-size: 12px; }
+
+@media all and (max-width: 1300px) {
+    h1 {
+        font-size: 31px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    h3 {
+        font-size: 23px;
+    }
+
+    h4 {
+        font-size: 21px;
+    }
+
+    h5 {
+        font-size: 19px;
+    }
+
+    h6 {
+        font-size: 17px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    small {
+        font-size: 12px;
+    }
 }
-@media all and (max-width: 400px){
-	h1 { font-size: 18px; }
-	h2 { font-size: 16px; }
-	h3 { font-size: 15px; }
-	h4 { font-size: 14px; }
-	h5 { font-size: 13px; }
-	h6 { font-size: 12px; }
-	body { font-size: 12px; }
-	small { font-size: 12px; }
+
+@media all and (max-width: 1200px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    h5 {
+        font-size: 18px;
+    }
+
+    h6 {
+        font-size: 16px;
+    }
+
+    body {
+        font-size: 13px;
+    }
+
+    small {
+        font-size: 12px;
+    }
 }
-@media all and (max-width: 300px){
-	h1 { font-size: 14px; }
-	h2 { font-size: 13px; }
-	h3 { font-size: 12px; }
-	h4 { font-size: 12px; }
-	h5 { font-size: 12px; }
-	h6 { font-size: 12px; }
-	body { font-size: 12px; }
-	small { font-size: 12px; }
+
+@media all and (max-width: 1100px) {
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    h5 {
+        font-size: 18px;
+    }
+
+    h6 {
+        font-size: 16px;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    small {
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    h5 {
+        font-size: 17px;
+    }
+
+    h6 {
+        font-size: 15px;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    small {
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width: 900px) {
+    h1 {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    h3 {
+        font-size: 21px;
+    }
+
+    h4 {
+        font-size: 19px;
+    }
+
+    h5 {
+        font-size: 17px;
+    }
+
+    h6 {
+        font-size: 15px;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    small {
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width: 800px) {
+    h1 {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    h5 {
+        font-size: 16px;
+    }
+
+    h6 {
+        font-size: 15px;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    small {
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width: 700px) {
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 16px;
+    }
+
+    h5 {
+        font-size: 14px;
+    }
+
+    h6 {
+        font-size: 13px;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    small {
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width: 600px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    h5 {
+        font-size: 13px;
+    }
+
+    h6 {
+        font-size: 12px;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    small {
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width: 500px) {
+    h1 {
+        font-size: 19px;
+    }
+
+    h2 {
+        font-size: 17px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    h4 {
+        font-size: 13px;
+    }
+
+    h5 {
+        font-size: 12px;
+    }
+
+    h6 {
+        font-size: 12px;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    small {
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width: 400px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    h5 {
+        font-size: 13px;
+    }
+
+    h6 {
+        font-size: 12px;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    small {
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width: 300px) {
+    h1 {
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 13px;
+    }
+
+    h3 {
+        font-size: 12px;
+    }
+
+    h4 {
+        font-size: 12px;
+    }
+
+    h5 {
+        font-size: 12px;
+    }
+
+    h6 {
+        font-size: 12px;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    small {
+        font-size: 12px;
+    }
 }

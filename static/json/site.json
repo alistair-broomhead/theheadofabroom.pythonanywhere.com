@@ -20,6 +20,12 @@
             "url": "/message",
             "template": "message.html",
             "description": "A simple test of a python HTML micro-framework"
+        },
+        {
+            "name": "Dojo_Ideas_Database",
+            "url": "/dojo-ideas",
+            "template": "dojo-ideas.html",
+            "description": "A repository of dojo ideas"
         }
     ]
 }

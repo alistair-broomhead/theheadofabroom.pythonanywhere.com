@@ -1,5 +1,7 @@
 from os import path
 from theheadofabroom import Site, Apps, micro_html
+from theheadofabroom.dojo_idea_db.ideas import Ideas
+from bottle import request
 
 SITE = Site(root=path.abspath(__file__))
 APPS = Apps(SITE)
@@ -41,8 +43,22 @@ def message(context, template, msg, body=''):
     context['document'] = str(document)
     return template.render(context)
 
+@APPS.Dojo_Ideas_Database()
+def dojo_ideas_main(context, template):
+    return Ideas(context, template).list_all().render()
+
+@APPS.Dojo_Ideas_Database(sub="/new", method='POST')
+def new_idea(context, template):
+    Ideas(context, template).new_from_request(request).redirect(APPS)
+
+@APPS.Dojo_Ideas_Database(sub="/edit")
+def edit_idea(context, template):
+    ideas = Ideas(context, template)
+    ideas.require_role('admin')
+    ideas.redirect(APPS)
+
 if __name__ == '__main__':
     # For local debugging - on pythonanywhere.com
     # these are served outside of bottle
     APPS.statics('/static/', '<path:path>')
-    APPS.start(host='0.0.0.0')
+    APPS.start()

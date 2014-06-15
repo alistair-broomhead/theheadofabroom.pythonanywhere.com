@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form id="add-new" action="dojo-ideas/new" method="post">
+        <h1> Add a new ides: </h1>
+
+        <label for="name"> Name </label>
+        <input type="text" id="name" name="name">
+
+        <label for="description"> Description </label>
+        <input type="text" id="description" name="description">
+
+        <input type="submit" id="submit-new">
+    </form>
+    <div id="ideas">
+        <h1> Ideas: </h1>
+        <table>
+            <tr>
+                <th> Name </th>
+                <th> Description </th>
+                <th></th>
+            </tr>
+            {% for name, description in ideas %}
+            <tr>
+                <td> {{ name}} </td>
+                <td> {{ description }}</td>
+                <td> <a href="dojo-ideas/edit?name={{ name }}">Edit</a> </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
