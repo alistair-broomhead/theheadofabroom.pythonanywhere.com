@@ -1,0 +1,111 @@
+.with-shadow {
+  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
+}
+
+.section(@background-colour;
+         @heading-colour){
+    .section {
+        background-color: @background-colour;
+        box-sizing: border-box;
+        padding: 10px 8px;
+        margin-bottom: 50px;
+        position: relative;
+        border-radius: 2px;
+
+        @media print {
+            background: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        & > :first-child { // Section heading
+            page-break-after: avoid;
+            margin: 0;
+            font-weight: bold;
+            font-size: 1.5em;
+            color: @heading-colour;
+            padding: 6px 6px 0;
+            border-radius: 2px;
+
+            @media print {
+                margin-top: 8px;
+                margin-right: 0;
+                margin-left: 0;
+                margin-bottom: 8px;
+            }
+        }
+    }
+}
+
+.card(@background-colour;
+      @text-colour){
+    background-color: @background-colour;
+    color: @text-colour;
+    clear: both;
+    overflow: auto;
+
+    border-radius: 2px;
+
+    @media screen {
+      margin: 10px -20px;
+      .with-shadow;
+    }
+
+    @media print {
+      page-break-inside: avoid;
+    }
+
+}
+
+.top-bar(@primary-colour) {
+  box-sizing: border-box;
+  top: 0;
+  line-height: 1;
+  z-index: 22;
+  color: white;
+  background-color: @primary-colour;
+
+  @media screen {
+      content: "";
+      left: -2%;
+      width: 104%;
+
+      display: block;
+      position: fixed;
+      .with-shadow;
+  }
+
+  @media print {
+      display: flex;
+      position: static;
+      margin: 0;
+  }
+}
+
+.bottom-bar(@primary-colour) {
+  box-sizing: border-box;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  line-height: 1;
+  z-index: 22;
+  color: white;
+  background-color: @primary-colour;
+  text-align: right;
+
+  @media screen {
+      content: "";
+      left: -2%;
+      width: 104%;
+
+      display: block;
+      position: fixed;
+      .with-shadow;
+  }
+
+  @media print {
+      display: flex;
+      position: static;
+      margin: 0;
+  }
+}

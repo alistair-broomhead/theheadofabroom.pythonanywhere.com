@@ -1,0 +1,118 @@
+@import "material";
+@import "theme";
+
+* {
+    padding : 0;
+    margin : 0;
+}
+
+.full-height-card {
+      background: @text-background;
+      color: @text-main;
+      .with-shadow;
+      top: 75px; /* Height of header and nav */
+      //bottom:20px; /* Height of the footer element */
+      padding: 10px;
+
+}
+
+body {
+  background: @page-background;
+  color: @text-main;
+
+  height: 100%;
+
+  font-family: Helvetica, Arial, sans-serif;
+
+  #page-top {
+    .top-bar(@primary-colour: @primary-colour);
+
+    height: 56px;
+
+    .heading-section {
+      display: inline-block;
+      background: @lightened;
+      .with-shadow;
+      height: 100%;
+
+      & > {
+        padding: 6px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+
+    & > div {
+      padding: 8px 4%;
+
+      #header {
+        display: inline-block;
+        padding: 9px 0;
+        font-size: 1.5em;
+        min-width: 200px;
+      }
+
+      #nav {
+        .heading-section;
+        top: 0;
+      }
+
+      #github {
+        .heading-section;
+        float: right;
+        margin-top: 8px;
+      }
+    }
+  }
+  #page-mid {
+    h1, h2, h3{
+      color: @secondary-colour;
+      margin: 10px;
+    }
+
+    #content {
+      .section(@background-colour: @section-background;
+               @heading-colour: @secondary-colour);
+
+      background: @section-background;
+      margin: 10px;
+      padding: 10px;
+      top: 75px; /* Height of header and nav */
+
+      & > div, & > p {
+        background: @text-background;
+        .with-shadow;
+        margin: 10px;
+        padding: 10px;
+      }
+      right: 30%;
+      left : 2%;
+      position: absolute;
+    }
+
+    #sidebar {
+      .full-height-card;
+      position: fixed;
+      right: 2px;
+      left: 72%;
+    }
+  }
+  #footer {
+    .bottom-bar(@primary-colour: @primary-colour);
+    margin: auto;
+    padding: 2px;
+    padding-right: 4%;
+    padding-left: 52%;
+    height: 24px;
+  }
+}
+
+/* Dimensions */
+
+hr {
+    margin : 1em;
+}
+
+li {
+    padding: 0.5em;
+}

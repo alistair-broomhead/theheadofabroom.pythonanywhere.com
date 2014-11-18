@@ -1,109 +1,192 @@
-/* Theme Colours */
-html, body, #page-top, #header, #footer  {
-    background: lavender;
-    color: lightslategray;
+.with-shadow {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
-
-#content, #sidebar, #nav a{
-    background: lightslategrey;
-    color: lavender;
-}
-
-#nav a {
-    border-top: 1px solid slategray;
-    border-left: 1px solid slategray;
-    border-right: 1px solid slategray;
-}
-
-/* Fonts */
-
-html,
-body {
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-/* Curved Tab edges */
-
-#nav a {
-    border-top-left-radius: 15px;
-    border-top-right-radius: 2px;
-}
-
-/* Dimensions */
-
 * {
-    padding : 0;
-    margin : 0;
+  padding: 0;
+  margin: 0;
 }
-
-hr {
-    margin : 1em;
+.full-height-card {
+  background: white;
+  color: #212121;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  top: 75px;
+  /* Height of header and nav */
+  padding: 10px;
 }
-
-li {
-    padding: 0.5em;
-}
-
-html,
 body {
-	height:100%;
+  background: #ececec;
+  color: #212121;
+  height: 100%;
+  font-family: Helvetica, Arial, sans-serif;
 }
-
-#page-top {
-    height: 75px;
+body #page-top {
+  box-sizing: border-box;
+  top: 0;
+  line-height: 1;
+  z-index: 22;
+  color: white;
+  background-color: #4285f4;
+  height: 56px;
+}
+@media screen {
+  body #page-top {
+    content: "";
+    left: -2%;
+    width: 104%;
+    display: block;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  }
 }
-
-#wrapper {
-    min-height:100%;
+@media print {
+  body #page-top {
+    display: flex;
+    position: static;
+    margin: 0;
+  }
 }
-#header h1 {
-    padding: 10px 2% 5px;
+body #page-top .heading-section {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  height: 100%;
+  padding: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
-#nav a {
-    padding : 5px;
-    margin: 0 0 0 -4px;
+body #page-top > div {
+  padding: 8px 4%;
 }
-
-#nav {
-    padding: 0 0 0 4px;
+body #page-top > div #header {
+  display: inline-block;
+  padding: 9px 0;
+  font-size: 1.5em;
+  min-width: 200px;
+}
+body #page-top > div #nav {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  height: 100%;
+  padding: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  top: 0;
+}
+body #page-top > div #github {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  height: 100%;
+  padding: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  float: right;
+  margin-top: 8px;
+}
+body #page-mid h1,
+body #page-mid h2,
+body #page-mid h3 {
+  color: #d23f31;
+  margin: 10px;
+}
+body #page-mid #content {
+  background: #dddddd;
+  margin: 10px;
+  padding: 10px;
+  top: 75px;
+  /* Height of header and nav */
+  right: 30%;
+  left: 2%;
+  position: absolute;
+}
+body #page-mid #content .section {
+  background-color: #dddddd;
+  box-sizing: border-box;
+  padding: 10px 8px;
+  margin-bottom: 50px;
+  position: relative;
+  border-radius: 2px;
+}
+@media print {
+  body #page-mid #content .section {
+    background: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+body #page-mid #content .section > :first-child {
+  page-break-after: avoid;
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #d23f31;
+  padding: 6px 6px 0;
+  border-radius: 2px;
+}
+@media print {
+  body #page-mid #content .section > :first-child {
+    margin-top: 8px;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 8px;
+  }
+}
+body #page-mid #content > div,
+body #page-mid #content > p {
+  background: white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  margin: 10px;
+  padding: 10px;
+}
+body #page-mid #sidebar {
+  background: white;
+  color: #212121;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  top: 75px;
+  /* Height of header and nav */
+  padding: 10px;
+  position: fixed;
+  right: 2px;
+  left: 72%;
+}
+body #footer {
+  box-sizing: border-box;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  line-height: 1;
+  z-index: 22;
+  color: white;
+  background-color: #4285f4;
+  text-align: right;
+  margin: auto;
+  padding: 2px;
+  padding-right: 4%;
+  padding-left: 52%;
+  height: 24px;
+}
+@media screen {
+  body #footer {
+    content: "";
+    left: -2%;
+    width: 104%;
+    display: block;
     position: fixed;
-    right : 30%;
-    left : 2%;
-    top: 55px; /* Height of heading + padding and margins */
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  }
 }
-
-#content, #sidebar {
-    top: 75px; /* Height of header and nav */
-    bottom:20px; /* Height of the footer element */
-    padding: 10px;
+@media print {
+  body #footer {
+    display: flex;
+    position: static;
+    margin: 0;
+  }
 }
-
-#content {
-    right: 30%;
-    left : 2%;
-    position: absolute;
+/* Dimensions */
+hr {
+  margin: 1em;
 }
-
-#sidebar {
-    position: fixed;
-    right: 2px;
-    left: 72%;
-}
-
-#footer {
-
-    vertical-align: middle;
-    text-align: right;
-    padding-left: 240px; /* chrome status bar intrudes here - in case I add more to my footer, this padding should stop me from forgetting */
-    padding-right: 10px;
-
-    position: fixed;
-    height: 20px;
-    bottom: 0;
-    left: 0;
-    right: 0;
+li {
+  padding: 0.5em;
 }
