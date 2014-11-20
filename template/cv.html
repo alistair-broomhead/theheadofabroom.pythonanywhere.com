@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="welcome" class="accordion">
+        <h1 class="heading"> On Github: </h1>
+        <div class="collapsible">
+            <p>
+                My CV should pop up automatically, if it doesn't, please
+                <a id="github-cv" target="_blank"
+                   href="http://alistair-broomhead.github.io/cv/">
+                    click here</a>
+                to find my CV on Github.
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    Nothing to see here...
+{% endblock %}
+
+{% block onload %}
+    <script>
+        setTimeout(function(){
+            document.getElementById("github-cv").click();
+        }, 0);
+    </script>
+{% endblock %}

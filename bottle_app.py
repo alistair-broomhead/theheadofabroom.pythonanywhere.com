@@ -10,6 +10,11 @@ def home(context, template):
     return template.render(context)
 
 
+@APPS.CV()
+def cv(context, template):
+    return template.render(context)
+
+
 @APPS.Exploder()
 def exploder(context, template):
     return template.render(context)

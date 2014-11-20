@@ -10,6 +10,12 @@
             "description": "This page"
         },
         {
+            "name": "CV",
+            "url": "/cv",
+            "template": "cv.html",
+            "description": "My CV"
+        },
+        {
             "name": "Exploder",
             "url": "/exploder",
             "template": "exploder.html",
