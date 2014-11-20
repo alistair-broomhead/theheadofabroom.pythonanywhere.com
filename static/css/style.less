@@ -29,19 +29,6 @@ body {
 
     height: 56px;
 
-    .heading-section {
-      display: inline-block;
-      background: @lightened;
-      .with-shadow;
-      height: 100%;
-
-      & > {
-        padding: 6px;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-    }
-
     & > div {
       padding: 8px 4%;
 
@@ -52,23 +39,54 @@ body {
         min-width: 200px;
       }
 
+      .heading-section {
+        display: inline-block;
+        height: 100%;
+        padding: 12px;
+        background: @lightened;
+        .with-shadow;
+
+        & * {
+          margin: 0 6px;
+          padding: 4px;
+          border-radius: 2px;
+          top: 0;
+        }
+
+      }
       #nav {
         .heading-section;
-        top: 0;
+
+        & * {
+          background: @text-background;
+          .with-shadow;
+        }
       }
 
       #github {
-        .heading-section;
-        float: right;
-        margin-top: 8px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 10px;
+        padding: 0;
+        span {
+          .with-shadow;
+          background: @text-background;
+          padding: 10px 4px;
+          border-radius: 2px;
+          height: 10px;
+          position: absolute;
+          top: 1px;
+          right: 34px;
+          width: 150px;
+          @media screen and (max-width: 720px) {
+            display: none;
+          }
+        }
       }
     }
   }
   #page-mid {
-    h1, h2, h3{
-      color: @secondary-colour;
-      margin: 10px;
-    }
 
     #content {
       .section(@background-colour: @section-background;
@@ -79,12 +97,68 @@ body {
       padding: 10px;
       top: 75px; /* Height of header and nav */
 
-      & > div, & > p {
-        background: @text-background;
-        .with-shadow;
-        margin: 10px;
-        padding: 10px;
+      .transition {
+          @duration: .25s;
+          @property: all;
+          @delay: 0;
+          @timing: ease;
+          -webkit-transition: @property @duration @timing @delay;
+          -moz-transition: @property @duration @timing @delay;
+          -ms-transition: @property @duration @timing @delay;
+          -o-transition: @property @duration @timing @delay;
+          transition: @property @duration @timing @delay;
       }
+
+      .accordion {
+        .transition;
+
+        .heading {
+          color: @secondary-colour;
+          margin: 10px;
+          margin-top: 40px;
+          .transition;
+        }
+        div {
+          background: @text-background;
+          .with-shadow;
+          margin: 10px;
+          padding: 10px;
+        }
+        .collapsible {
+          visibility: visible;
+          height: auto;
+          margin-bottom: 20px;
+          .transition;
+          & > *{
+            .transition;
+          }
+        }
+      }
+      @media screen {
+        .contracted {
+          background: @text-background;
+          .with-shadow;
+          margin: 0;
+          padding: 5px;
+
+          .heading {
+            margin: 5px;
+            padding: 0;
+            font-size: 1.2em;
+          }
+          .collapsible {
+            margin: 0;
+            padding: 0;
+            & > * {
+              height: 0;
+              font-size: 0;
+            }
+
+          }
+        }
+        
+      }
+
       right: 30%;
       left : 2%;
       position: absolute;

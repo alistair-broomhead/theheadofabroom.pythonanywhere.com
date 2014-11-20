@@ -1,124 +1,77 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1> Welcome! </h1>
-    <p> This is the personal website of Alistair Broomhead </p>
-    <br/>
-    <div id="social_media" class="accordion">
+    <div id="welcome" class="accordion">
+        <h1 class="heading"> Welcome! </h1>
+        <div class="collapsible">
+            <p>This is the personal website of Alistair Broomhead</p>
+        </div>
+    </div>
+
+    <div id="social_media" class="accordion collapsed">
         <h2 class="heading"> Find me online </h2>
-        <list class="collapsible">
-            {% for label, link in [
-                ["Twitter", "twitter.com/theheadofabroom"],
-                ["LinkedIn", "uk.linkedin.com/in/alistairbroomhead/"],
-                ["Google+", "plus.google.com/+AlistairBroomhead"],
-                ["Github", "github.com/alistair-broomhead"],
-                ["Stack Overflow/Stack Exchange",
-                 "stackexchange.com/users/330968/theheadofabroom"]
-            ] %}
-            <li> <a href="http://{{ link }}"> {{ label }} </a> </li>
-            {%  endfor %}
-        </list>
+        <div class="collapsible">
+            <list>
+                {% for label, link in [
+                    ["Twitter", "twitter.com/theheadofabroom"],
+                    ["LinkedIn", "uk.linkedin.com/in/alistairbroomhead/"],
+                    ["Google+", "plus.google.com/+AlistairBroomhead"],
+                    ["Github", "github.com/alistair-broomhead"],
+                    ["Stack Overflow/Stack Exchange",
+                     "stackexchange.com/users/330968/theheadofabroom"]
+                ] %}
+                <li>
+                    <a target="_blank" href="http://{{ link }}">
+                        {{ label }}
+                    </a>
+                </li>
+                {%  endfor %}
+            </list>
+        </div>
     </div>
-    <hr>
-    <div id="blog_posts_and_talks" class="accordion">
+
+    <div id="blog_posts_and_talks" class="accordion collapsed">
         <h2 class="heading"> Guest blog posts and talks </h2>
-        <list class="collapsible">
-            {% for label, link in [
-                ["Slides for a BDD talk I gave to London Python Dojo",
-                 "goo.gl/DE8oQE"],
-                ["Mindcandy blogpost on BDD",
-                 "tech.mindcandy.com/2014/03/musings-on-bdd/"],
-                ["Event publicity for London Python Dojo",
-                 "tech.mindcandy.com/2014/02/mindcandy-hosts-london-python-dojo/"],
-                 ["A presentation I made to the tools team at Mind Candy on BDD",
-                  "goo.gl/oYqnDu"]
-            ] %}
-            <li> <a href="http://{{ link }}"> {{ label }} </a> </li>
-            {%  endfor %}
-        </list>
+        <div class="collapsible">
+            <list>
+                {% for label, link in [
+                    ["Slides for a BDD talk I gave to London Python Dojo",
+                     "goo.gl/DE8oQE"],
+                    ["Mindcandy blogpost on BDD",
+                     "tech.mindcandy.com/2014/03/musings-on-bdd/"],
+                    ["Event publicity for London Python Dojo",
+                     "tech.mindcandy.com/2014/02/mindcandy-hosts-london-python-dojo/"],
+                     ["A presentation I made to the tools team at Mind Candy on BDD",
+                      "goo.gl/oYqnDu"]
+                ] %}
+                <li>
+                    <a target="_blank" href="http://{{ link }}">
+                        {{ label }}
+                    </a>
+                </li>
+                {%  endfor %}
+            </list>
+        </div>
     </div>
-    <hr>
-    <div id="projects" class="accordion">
+
+    <div id="projects" class="accordion collapsed">
         <h2 class="heading"> Live projects </h2>
-        <list class="collapsible">
-            {% for app in site.get('apps') %}
-                {% if 'description' in app %}
-                    <li>
-                        <a href="{{ app.get('url') }}">
-                            {{ app.get('name') }} - {{ app.get('description') }}
-                        </a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </list>
+        <div class="collapsible">
+            <list>
+                {% for app in site.get('apps') %}
+                    {% if 'description' in app %}
+                        <li>
+                            <a target="_blank" href="{{ app.get('url') }}">
+                                {{ app.get('name') }} - {{ app.get('description') }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </list>
+        </div>
     </div>
 {% endblock %}
 
 
 {% block sidebar %}
     Headings:
-{% endblock %}
-
-{% block onload %}
-    <script>
-        var i, j, k;
-        var sidebar = document.getElementById("sidebar");
-        var divs = document.getElementById("content").getElementsByTagName("div");
-        var headingTags = ["h1", "h2", "h3", "h4"];
-        for (i = 0; i < divs.length; i++){
-            var div = divs[i];
-            if (div.hasOwnProperty("id") && div.id){
-                var heading = null;
-                for (j = 0;
-                     j < headingTags.length && heading === null;
-                     j++){
-                    var newHeadings = div.getElementsByTagName(headingTags[j]);
-                    for (k = 0;
-                         k < newHeadings.length && heading === null;
-                         k++ ){
-                        var newHeading = newHeadings[k];
-                        if (newHeading.parentNode == div){
-                            heading = newHeading;
-                        }
-                    }
-                }
-                if (heading !== null){
-                    var link = document.createElement("a");
-                    link.href = "#" + div.id;
-                    link.innerHTML = heading.innerHTML;
-                    var para = document.createElement("p");
-                    para.appendChild(link);
-                    sidebar.appendChild(para);
-                }
-            }
-        }
-
-        var accordions = document.getElementsByClassName("accordion");
-
-        function Accordion(div){
-            this.div = div;
-            this.div.accordion = this;
-            this.collapsible = div.getElementsByClassName("collapsible")[0];
-            this.heading = div.getElementsByClassName("heading")[0];
-            this.up_down = document.createElement("small");
-            this.heading.appendChild(this.up_down);
-            this.up_down.innerHTML = this.collapsible.hidden? this.expand: this.collapse;
-
-            var self = this;
-            this.heading.onclick = function(){self.toggle();};
-        }
-        Accordion.prototype = {
-            div: null,
-            expand: "expand ▼",
-            collapse: "collapse ▶",
-
-            toggle: function toggle(){
-                this.collapsible.hidden = !this.collapsible.hidden;
-                this.up_down.innerHTML = this.collapsible.hidden? this.expand: this.collapse;
-            }
-        }
-
-        for (i = 0; i < accordions.length; i++){
-            new Accordion(accordions[i]);
-        }
-    </script>
 {% endblock %}

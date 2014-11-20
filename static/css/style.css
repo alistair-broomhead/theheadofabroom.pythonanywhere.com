@@ -1,5 +1,7 @@
-.with-shadow {
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+@media screen {
+  .with-shadow {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  }
 }
 * {
   padding: 0;
@@ -8,10 +10,14 @@
 .full-height-card {
   background: white;
   color: #212121;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   top: 75px;
   /* Height of header and nav */
   padding: 10px;
+}
+@media screen {
+  .full-height-card {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  }
 }
 body {
   background: #ececec;
@@ -35,6 +41,10 @@ body #page-top {
     width: 104%;
     display: block;
     position: fixed;
+  }
+}
+@media screen and screen {
+  body #page-top {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   }
 }
@@ -45,15 +55,6 @@ body #page-top {
     margin: 0;
   }
 }
-body #page-top .heading-section {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
-  height: 100%;
-  padding: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
 body #page-top > div {
   padding: 8px 4%;
 }
@@ -63,32 +64,74 @@ body #page-top > div #header {
   font-size: 1.5em;
   min-width: 200px;
 }
-body #page-top > div #nav {
+body #page-top > div .heading-section {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   height: 100%;
-  padding: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.15);
+}
+@media screen {
+  body #page-top > div .heading-section {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  }
+}
+body #page-top > div .heading-section * {
+  margin: 0 6px;
+  padding: 4px;
+  border-radius: 2px;
   top: 0;
 }
-body #page-top > div #github {
+body #page-top > div #nav {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   height: 100%;
-  padding: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-  float: right;
-  margin-top: 8px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.15);
 }
-body #page-mid h1,
-body #page-mid h2,
-body #page-mid h3 {
-  color: #d23f31;
+@media screen {
+  body #page-top > div #nav {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  }
+}
+body #page-top > div #nav * {
+  margin: 0 6px;
+  padding: 4px;
+  border-radius: 2px;
+  top: 0;
+}
+body #page-top > div #nav * {
+  background: white;
+}
+@media screen {
+  body #page-top > div #nav * {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  }
+}
+body #page-top > div #github {
+  position: absolute;
+  top: 0;
+  right: 0;
   margin: 10px;
+  padding: 0;
+}
+body #page-top > div #github span {
+  background: white;
+  padding: 10px 4px;
+  border-radius: 2px;
+  height: 10px;
+  position: absolute;
+  top: 1px;
+  right: 34px;
+  width: 150px;
+}
+@media screen {
+  body #page-top > div #github span {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  }
+}
+@media screen and (max-width: 720px) {
+  body #page-top > div #github span {
+    display: none;
+  }
 }
 body #page-mid #content {
   background: #dddddd;
@@ -132,23 +175,96 @@ body #page-mid #content .section > :first-child {
     margin-bottom: 8px;
   }
 }
-body #page-mid #content > div,
-body #page-mid #content > p {
+body #page-mid #content .transition {
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
+body #page-mid #content .accordion {
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
+body #page-mid #content .accordion .heading {
+  color: #d23f31;
+  margin: 10px;
+  margin-top: 40px;
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
+body #page-mid #content .accordion div {
   background: white;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   margin: 10px;
   padding: 10px;
+}
+@media screen {
+  body #page-mid #content .accordion div {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  }
+}
+body #page-mid #content .accordion .collapsible {
+  visibility: visible;
+  height: auto;
+  margin-bottom: 20px;
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
+body #page-mid #content .accordion .collapsible > * {
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
+@media screen {
+  body #page-mid #content .contracted {
+    background: white;
+    margin: 0;
+    padding: 5px;
+  }
+  body #page-mid #content .contracted .heading {
+    margin: 5px;
+    padding: 0;
+    font-size: 1.2em;
+  }
+  body #page-mid #content .contracted .collapsible {
+    margin: 0;
+    padding: 0;
+  }
+  body #page-mid #content .contracted .collapsible > * {
+    height: 0;
+    font-size: 0;
+  }
+}
+@media screen and screen {
+  body #page-mid #content .contracted {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  }
 }
 body #page-mid #sidebar {
   background: white;
   color: #212121;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   top: 75px;
   /* Height of header and nav */
   padding: 10px;
   position: fixed;
   right: 2px;
   left: 72%;
+}
+@media screen {
+  body #page-mid #sidebar {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  }
 }
 body #footer {
   box-sizing: border-box;
@@ -173,6 +289,10 @@ body #footer {
     width: 104%;
     display: block;
     position: fixed;
+  }
+}
+@media screen and screen {
+  body #footer {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   }
 }

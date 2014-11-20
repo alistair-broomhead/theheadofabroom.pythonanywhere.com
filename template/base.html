@@ -6,23 +6,10 @@
     <title> {{ site_name }} | {{ page_name }} </title>
     <link rel="stylesheet" type="text/css" href="/static/css/font-size.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script src="/static/js/app/accordion.js"></script>
     {% block head %}{% endblock %}
 </head>
 <body id="wrapper">
-    <div id="page-mid">
-        <div id="sidebar">
-            {% block sidebar %}
-            {% endblock %}
-        </div>
-        {% block content_div %}
-        <div id="content">
-            {% block content %}{% endblock %}
-        </div>
-        {% endblock %}
-    </div>
-    <small id="footer">
-        © Copyright {{ site.get('copyright_year') }} {{ site.get('author') }}
-    </small>
     <div id="page-top">
         <div>
             <div id="header">
@@ -38,13 +25,33 @@
                 {% endfor %}
             </div>
             <div id="github">
-                <a href="https://github.com/alistair-broomhead/theheadofabroom.pythonanywhere.com">
-                    See me on GitHub
+                <a target="_blank"
+                   href="https://github.com/alistair-broomhead/theheadofabroom.pythonanywhere.com">
+                    <span>Source code on GitHub</span>
+                    <img src="https://opam.ocaml.org/ext/img/github.png">
+
                 </a>
             </div>
         </div>
     </div>
+    <div id="page-mid">
+        <div id="sidebar">
+            {% block sidebar %}
+            {% endblock %}
+        </div>
+        {% block content_div %}
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        {% endblock %}
+    </div>
+    <small id="footer">
+        © Copyright {{ site.get('copyright_year') }} {{ site.get('author') }}
+    </small>
     {% block onload %}
+    <script>
+        createAccordions(document);
+    </script>
     {% endblock %}
 </body>
 </html>
