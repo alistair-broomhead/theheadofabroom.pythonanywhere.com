@@ -12,19 +12,9 @@ def home(context, template):
 
 @APPS.CV()
 def cv(context, template):
-    try:
-        from xhtml2pdf import pisa
-        from urllib import urlopen
-        cv_url = "http://alistair-broomhead.github.io/cv/"
-        out_filename = 'out.pdf'
-        with open(out_filename, 'w+b') as out_file:
-            with urlopen(cv_url) as cv:
-                cv_string = cv.read()
-            pisa.CreatePDF(cv_string, dest=out_file)
-        print "produced pdf"
-    finally:
-        print context
-        return template.render(context)
+    context['cv_url'] = "http://alistair-broomhead.github.io/cv/"
+    context['pdf_url'] = "/static/pdf/cv-2014-11-20.pdf"
+    return template.render(context)
 
 
 @APPS.Exploder()
