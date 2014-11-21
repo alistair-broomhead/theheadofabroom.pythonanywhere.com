@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% macro link(url, text) -%} <a target="_blank" href="http://{{ url }}"> {{ text }} </a> {%- endmacro %}
+{% macro mail(address) -%} <a target="_blank" href="mailto:{{ address }}"> {{ address }} </a> {%- endmacro %}
+
+{% block content %}
+    <div id="welcome" class="accordion">
+        <h1 class="heading"> How to contact me: </h1>
+        <div class="collapsible">
+
+            <p>
+                To contact me on social media you can find me on
+                {{ link('twitter.com/theheadofabroom', 'Twitter') }},
+                {{ link('uk.linkedin.com/in/alistairbroomhead', 'LinkedIn') }}
+                or {{ link('plus.google.com/+AlistairBroomhead', 'Google+') }}.
+                If you are lucky you might occasionally find me lurking on
+                Freenode.net with the nick 'theheadofabroom'.
+            </p>
+
+            <p>
+                You can find my open source contributions, including this site,
+                on {{ link('github.com/alistair-broomhead', 'GitHub') }}, and
+                you can find my questions and answers on the
+                {{ link('stackexchange.com/users/330968/theheadofabroom',
+                 'StackExchange') }} network.
+            </p>
+
+            <p>
+                To get me by email you can use
+                {{ mail('theheadofabroom@outlook.com') }} for anything
+                recruitment-related, or
+                <span style="font-weight: bold; white-space: nowrap; text-decoration: underline">
+                    alistair [dot] broomhead [at] gmail [dotcom]
+                </span>
+                for anything more personal. For anything related to the London
+                Python Dojo please use {{ mail('team@ldnpydojo.org.uk') }} where
+                either myself or another member o the team will gt back to you.
+            </p>
+
+
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    Nothing to see here...
+{% endblock %}
