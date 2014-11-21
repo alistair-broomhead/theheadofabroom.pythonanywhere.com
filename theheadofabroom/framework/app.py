@@ -12,7 +12,9 @@ class App(object):
             self.template = site.environment.get_template(template)
         except (TemplateNotFound, AttributeError):
             self.template = None
-        self._context = {}
+        self._context = {
+            'app': site.apps[name]
+        }
 
     @property
     def context(self):

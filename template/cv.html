@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% set extra = app.get('extra') %}
+{% set cv_url = extra.get('cv_url') %}
+{% set pdf_url = extra.get('pdf_url') %}
+
 {% block content %}
     <div id="welcome" class="accordion">
         <h1 class="heading"> On Github: </h1>
@@ -24,8 +28,8 @@
 
 {% block onload %}
     <script>
-        setTimeout(function(){
-            document.getElementById("github-cv").click();
-        }, 0);
+        //setTimeout(function(){
+        //    document.getElementById("github-cv").click();
+        //}, 0);
     </script>
 {% endblock %}

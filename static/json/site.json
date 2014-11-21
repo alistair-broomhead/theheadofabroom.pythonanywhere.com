@@ -2,30 +2,48 @@
     "name": "theheadofabroom.pythonanywhere.com",
     "copyright_year": 2014,
     "author": "Alistair Broomhead",
-    "apps": [
-        {
-            "name": "Home",
+    "experiments": ["Exploder", "Message"],
+    "apps": {
+        "Home": {
             "url": "/",
             "template": "home.html",
             "description": "This page"
         },
-        {
-            "name": "CV",
+        "CV": {
             "url": "/cv",
             "template": "cv.html",
-            "description": "My CV"
+            "description": "My CV",
+            "extra": {
+                "cv_url": "http://alistair-broomhead.github.io/cv/",
+                "pdf_url": "/static/pdf/cv-2014-11-20.pdf"
+            }
         },
-        {
-            "name": "Exploder",
+        "Contact": {
+            "url": "/contact",
+            "template": "contact.html",
+            "description": "Contact me"
+        },
+        "Blog": {
+            "url": "/blog",
+            "template": "blog.html",
+            "description": "My Blog",
+            "sub": []
+        },
+        "Experiments": {
+            "url": "/experiments",
+            "template": "experiments.html",
+            "description": "A collection of experiments",
+            "sub": ["Exploder", "Message"]
+        },
+        "Exploder": {
             "url": "/exploder",
             "template": "exploder.html",
             "description": "A JavaScript/canvas particle experiment"
         },
-        {
-            "name": "Message",
+        "Message": {
             "url": "/message",
             "template": "message.html",
             "description": "A simple test of a python HTML micro-framework"
         }
-    ]
+}
 }

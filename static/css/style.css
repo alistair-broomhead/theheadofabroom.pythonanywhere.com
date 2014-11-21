@@ -288,6 +288,7 @@ body #footer {
 hr {
   margin: 1em;
 }
-li {
+ul li {
   padding: 0.5em;
+  list-style-position: inside;
 }

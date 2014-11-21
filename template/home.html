@@ -10,7 +10,7 @@
     <div id="social_media" class="accordion collapsed">
         <h2 class="heading"> Find me online </h2>
         <div class="collapsible">
-            <list>
+            <ul>
                 {% for label, link in [
                     ["Twitter", "twitter.com/theheadofabroom"],
                     ["LinkedIn", "uk.linkedin.com/in/alistairbroomhead/"],
@@ -25,14 +25,14 @@
                     </a>
                 </li>
                 {%  endfor %}
-            </list>
+            </ul>
         </div>
     </div>
 
     <div id="blog_posts_and_talks" class="accordion collapsed">
         <h2 class="heading"> Guest blog posts and talks </h2>
         <div class="collapsible">
-            <list>
+            <ul>
                 {% for label, link in [
                     ["Slides for a BDD talk I gave to London Python Dojo",
                      "goo.gl/DE8oQE"],
@@ -49,24 +49,25 @@
                     </a>
                 </li>
                 {%  endfor %}
-            </list>
+            </ul>
         </div>
     </div>
 
     <div id="projects" class="accordion collapsed">
         <h2 class="heading"> Live projects </h2>
         <div class="collapsible">
-            <list>
-                {% for app in site.get('apps') %}
+            <ul>
+                {% for name in site_apps.get('Experiments').get("sub") %}
+                    {% set app = site_apps.get(name) %}
                     {% if 'description' in app %}
                         <li>
                             <a target="_blank" href="{{ app.get('url') }}">
-                                {{ app.get('name') }} - {{ app.get('description') }}
+                                {{ name }} - {{ app.get('description') }}
                             </a>
                         </li>
                     {% endif %}
                 {% endfor %}
-            </list>
+            </ul>
         </div>
     </div>
 {% endblock %}

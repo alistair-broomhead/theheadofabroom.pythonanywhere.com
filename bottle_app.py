@@ -1,53 +1,25 @@
 from os import path
-from theheadofabroom import Site, Apps, micro_html
-
-SITE = Site(root=path.abspath(__file__))
-APPS = Apps(SITE)
+from theheadofabroom.framework import Site, Apps
+from theheadofabroom.apps import message
 
 
-@APPS.Home()
-def home(context, template):
-    return template.render(context)
+def render_with_added(**add_context):
+    def inner(template, context):
+        for k, v in add_context.items():
+            context[k] = v
+        return template.render(context)
+    return inner
 
 
-@APPS.CV()
-def cv(context, template):
-    context['cv_url'] = "http://alistair-broomhead.github.io/cv/"
-    context['pdf_url'] = "/static/pdf/cv-2014-11-20.pdf"
-    return template.render(context)
+def main():
+    site = Site(root=path.abspath(__file__))
+    apps = Apps(site)
 
+    message.Message(apps).connect(apps.Message)
 
-@APPS.Exploder()
-def exploder(context, template):
-    return template.render(context)
+    return apps
 
-
-# noinspection PyUnusedLocal
-@APPS.Message()
-def message(context, template):
-    APPS.redirect('/'.join((
-        context['page']['url'],
-        'Hello, World!',
-        'Try changing the url, to see how it affects the page'
-    )))
-
-
-@APPS.Message(sub='/<msg>')
-@APPS.Message(sub='/<msg>/<body:path>')
-def message(context, template, msg, body=''):
-    document = micro_html.HTML()
-    if msg:
-        with document.head.tag('title') as title:
-            title.inner_html = msg
-        with document.body.tag('h1') as heading:
-            heading.inner_html = msg
-    if body:
-        body = body.replace('/n', '<br/>')
-        with document.body.tag('p') as paragraph:
-            paragraph.inner_html = body
-    context['document'] = str(document)
-    return template.render(context)
-
+APPS = main()
 if __name__ == '__main__':
     # For local debugging - on pythonanywhere.com
     # these are served outside of bottle
