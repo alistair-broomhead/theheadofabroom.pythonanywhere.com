@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% macro link(url, text) -%} <a target="_blank" href="http://{{ url }}"> {{ text }} </a> {%- endmacro %}
+{% macro mail(address) -%} <a target="_blank" href="mailto:{{ address }}"> {{ address }} </a> {%- endmacro %}
+
+{% block content %}
+    <div id="welcome" class="accordion">
+        <h1 class="heading"> My experiments </h1>
+        <div class="collapsible">
+            <p>
+                Below are a set of experiments that run in the browser.
+            </p>
+        </div>
+    </div>
+    <div id="exploder" class="accordion">
+        <h1 class="heading"> Particle Exploder </h1>
+        <div class="collapsible">
+            <p>
+                <a href="/exploder">Exploder</a> was a simple exercise to polish
+                my understanding of JavaScript's prototypical inheritance model
+                while learning to make use the html5 canvas element. I took
+                simplistic code from an online tutorial, <a href="http://www.html5canvastutorials.com/labs/html5-canvas-ultimate-flash-killer/">here</a>,
+                deconstructed it, and then put it back together as a set of
+                objects that allowed for extension, such as dynamic resizing and
+                support for multi-touch.
+            </p>
+        </div>
+    </div>
+    <div id="message" class="accordion">
+        <h1 class="heading"> Message </h1>
+        <div class="collapsible">
+            <p>
+                <a href="/message">Message</a> was an experiment in putting together a
+                micro-framework for generating html content - I wanted to see wht I could
+                achieve while minimising external dependencies to just bottle. While somewhat
+                successful, the context management approach I followed with this framework
+                did not seem as clean or elegant as relying on jinja2, as I have for the rest of
+                this site.
+            </p>
+        </div>
+    </div>
+{% endblock %}

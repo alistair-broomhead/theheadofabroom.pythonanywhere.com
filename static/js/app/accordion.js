@@ -5,6 +5,9 @@ function createAccordions(document){
 
         var i, j, k;
         var sidebar = document.getElementById("sidebar");
+        var h = document.createElement('h5');
+        h.innerHTML = "On this page:";
+        sidebar.appendChild(h);
         var divs = document.getElementById("content").getElementsByTagName("div");
         var headingTags = ["h1", "h2", "h3", "h4"];
         for (i = 0; i < divs.length; i++){

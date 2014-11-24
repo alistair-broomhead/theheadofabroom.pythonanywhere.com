@@ -22,7 +22,7 @@
                     {% set app_url = app['url'] %}
                     <a href="{{ app_url }}"
                        id="nav-{{ name }}"
-                       class={% if name == page_name %} "nav.current" {% else %} "nav.other" {% endif %}>
+                       class="{% if name == page_name %} nav-current {% else %} nav-other {% endif %}">
                         {{ name }}
                     </a>
                 {%- endmacro %}

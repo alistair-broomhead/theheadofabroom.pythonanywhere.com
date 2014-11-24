@@ -23,5 +23,7 @@ APPS = main()
 if __name__ == '__main__':
     # For local debugging - on pythonanywhere.com
     # these are served outside of bottle
+    import bottle
+    bottle.DEBUG = True
     APPS.statics('/static/', '<path:path>')
     APPS.start()
