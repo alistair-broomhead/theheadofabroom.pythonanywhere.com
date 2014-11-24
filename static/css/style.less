@@ -1,6 +1,18 @@
 @import "material";
 @import "theme";
 
+.transition {
+    @duration: .25s;
+    @property: all;
+    @delay: 0;
+    @timing: ease;
+    -webkit-transition: @property @duration @timing @delay;
+    -moz-transition: @property @duration @timing @delay;
+    -ms-transition: @property @duration @timing @delay;
+    -o-transition: @property @duration @timing @delay;
+    transition: @property @duration @timing @delay;
+}
+
 * {
     padding : 0;
     margin : 0;
@@ -62,14 +74,60 @@ body {
       }
       #nav {
         .heading-section;
-        & * {
-          background: @text-background;
-          .with-shadow;
+        .nav-section {
+          display: inline;
+          padding: 0;
+          margin: 0;
+
+          .nav-sub {
+            position: absolute;
+            visibility: hidden;
+            height: 0;
+            .transition;
+            div{
+              .transition;
+              visibility: none;
+              height: 0;
+
+              a {
+                font-size: 0;
+                .transition;
+              }
+            }
+          }
+          .nav-sub-shown {
+            position: absolute;
+            visibility: visible;
+            opacity: 1;
+            height: auto;
+            .transition;
+            div{
+              margin: 2px;
+              margin-bottom: 8px;
+              visibility: visible;
+              opacity: 1;
+              height: auto;
+              a {
+                background: @text-background;
+                .with-shadow;
+                font-size: inherit;
+              }
+            }
+          }
+
+
         }
-        .nav-current {
-          font-weight: bold;
-          background: fadeout(@text-background, 10%);
-        }
+
+
+          .nav-other .nav-link{
+            background: @text-background;
+            .with-shadow;
+          }
+          .nav-current .nav-link {
+            font-weight: bold;
+            background: fadeout(@text-background, 10%);
+            .with-shadow;
+          }
       }
 
       #github {
@@ -120,17 +178,6 @@ body {
       padding: 10px;
       top: 75px; /* Height of header and nav */
 
-      .transition {
-          @duration: .25s;
-          @property: all;
-          @delay: 0;
-          @timing: ease;
-          -webkit-transition: @property @duration @timing @delay;
-          -moz-transition: @property @duration @timing @delay;
-          -ms-transition: @property @duration @timing @delay;
-          -o-transition: @property @duration @timing @delay;
-          transition: @property @duration @timing @delay;
-      }
 
       .accordion {
         .transition;

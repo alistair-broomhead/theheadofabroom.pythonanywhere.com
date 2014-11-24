@@ -1,6 +1,13 @@
 .with-shadow {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
+.transition {
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
 * {
   padding: 0;
   margin: 0;
@@ -85,13 +92,69 @@ body #page-top > div #nav * {
   border-radius: 2px;
   top: 0;
 }
-body #page-top > div #nav * {
+body #page-top > div #nav .nav-section {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+body #page-top > div #nav .nav-section .nav-sub {
+  position: absolute;
+  visibility: hidden;
+  height: 0;
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
+body #page-top > div #nav .nav-section .nav-sub div {
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+  visibility: none;
+  height: 0;
+}
+body #page-top > div #nav .nav-section .nav-sub div a {
+  font-size: 0;
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
+body #page-top > div #nav .nav-section .nav-sub-shown {
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
+body #page-top > div #nav .nav-section .nav-sub-shown div {
+  margin: 2px;
+  margin-bottom: 8px;
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+}
+body #page-top > div #nav .nav-section .nav-sub-shown div a {
+  background: white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  font-size: inherit;
+}
+body #page-top > div #nav .nav-other .nav-link {
   background: white;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
-body #page-top > div #nav .nav-current {
+body #page-top > div #nav .nav-current .nav-link {
   font-weight: bold;
   background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
 body #page-top > div #github {
   position: absolute;
@@ -173,13 +236,6 @@ body #page-mid #content .section > :first-child {
     margin-left: 0;
     margin-bottom: 8px;
   }
-}
-body #page-mid #content .transition {
-  -webkit-transition: all 0.25s ease 0;
-  -moz-transition: all 0.25s ease 0;
-  -ms-transition: all 0.25s ease 0;
-  -o-transition: all 0.25s ease 0;
-  transition: all 0.25s ease 0;
 }
 body #page-mid #content .accordion {
   -webkit-transition: all 0.25s ease 0;

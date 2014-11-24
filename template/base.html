@@ -18,13 +18,71 @@
             </div>
             <div id="nav">
                 {% macro nav_item(name, extra='') -%}
-                    {% set app = site_apps[name] %}
-                    {% set app_url = app['url'] %}
+                    {% set app = site_apps[name] %} {% set app_url = app['url'] %} {% set nav_id = 'nav-'+name %}
+                    <span class="nav-section {% if name == page_name %}nav-current{% else %}nav-other{% endif %}">
                     <a href="{{ app_url }}"
-                       id="nav-{{ name }}"
-                       class="{% if name == page_name %} nav-current {% else %} nav-other {% endif %}">
+                       id="{{ nav_id }}"
+                       class="nav-link">
                         {{ name }}
                     </a>
+                    {% set sub = app['sub'] %}
+                    {% if sub %}
+                        <div id="{{ nav_id }}-sub" class="nav-sub">
+                            {% for sub_app_name in sub %}
+                                {% set sub_app = site_apps[sub_app_name] %}
+                                <div>
+                                    <a href="{{ sub_app['url'] }}">{{ sub_app_name }}</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <script>
+                            (function(){
+                                var navId = document.getElementById("{{ nav_id }}");
+                                var sub = document.getElementById("{{ nav_id }}-sub");
+
+                                navId.menu = {
+                                    "navId": navId,
+                                    "sub": sub,
+                                    "count": 0,
+                                    "increase": function (){
+                                        if (this.count == 0){
+                                            this.show();
+                                        }
+                                        this.count++;
+                                    },
+                                    "decrease": function (){
+                                        this.count--;
+                                        if (this.count == 0){
+                                            this.hide();
+                                        }
+                                    },
+                                    "show": function (){
+                                        var anchor = this.navId;
+                                        this.sub.classList.add("nav-sub-shown");
+                                        var bounds = anchor.getBoundingClientRect();
+                                        this.sub.style.top = bounds.bottom + "px";
+                                        this.sub.style.left = bounds.left + "px";
+                                    },
+                                    "hide": function (){
+                                        this.sub.classList.remove("nav-sub-shown");
+                                    }
+                                };
+
+                                sub.onmouseover = navId.onmouseover = function(){
+                                    var menu = document.getElementById("{{ nav_id }}").menu;
+                                    menu.increase();
+                                };
+
+                                sub.onmouseout = navId.onmouseout = function(){
+                                    setTimeout(function(){
+                                        var menu = document.getElementById("{{ nav_id }}").menu;
+                                        menu.decrease();
+                                    }, 500)
+                                };
+                            })();
+                        </script>
+                    {% endif %}
+                    </span>
                 {%- endmacro %}
 
                 {{ nav_item("Home") }}
