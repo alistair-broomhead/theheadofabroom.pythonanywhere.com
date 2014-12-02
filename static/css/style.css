@@ -58,11 +58,19 @@ body #page-top {
 body #page-top > div {
   padding: 8px 4%;
 }
+body #page-top > div .offset {
+  position: relative;
+  top: -15px;
+  left: 6px;
+}
 body #page-top > div #header {
+  position: relative;
+  top: -15px;
+  left: 6px;
   display: inline-block;
   padding: 9px 0;
   font-size: 1.5em;
-  min-width: 199px;
+  min-width: 180px;
   border-right: 1px solid rgba(255, 255, 255, 0.6);
   height: 26px;
 }
@@ -80,6 +88,9 @@ body #page-top > div .heading-section * {
   top: 0;
 }
 body #page-top > div #nav {
+  position: relative;
+  top: -15px;
+  left: 6px;
   display: inline-block;
   height: 100%;
   padding: 12px;
@@ -167,30 +178,30 @@ body #page-top > div #github div {
   position: absolute;
   top: 1px;
   right: -10px;
-  width: 200px;
+  min-width: 200px;
 }
 body #page-top > div #github div img {
-  position: relative;
-  top: 0;
-  left: 0;
+  position: fixed;
+  top: 12px;
+  right: 0;
 }
 body #page-top > div #github div span {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   position: relative;
-  top: -12px;
-  right: 0;
+  top: 10px;
+  right: -30px;
   background: white;
   padding: 10px 4px;
   border-radius: 2px;
   height: 10px;
-  width: 150px;
+  min-width: 150px;
 }
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 800px) {
   body #page-top > div #github div span {
     display: none;
   }
 }
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 800px) {
   body #page-top > div #github div {
     width: 60px;
   }
@@ -343,6 +354,14 @@ body #footer {
     position: static;
     margin: 0;
   }
+}
+.headshot {
+  display: inline-block;
+  background-image: url(http://www.gravatar.com/avatar/0c85ef5eb7678857e2a6b793dfe055a3.png);
+  background-size: 40px 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 /* Dimensions */
 hr {
