@@ -17,7 +17,8 @@ The first mouse to make two successful raids is crowned the winner.
 
 This is the  back-end for the game, and is a rest service.
 
-    /table      POST    Vote to start a new game.
+    /table          POST    Vote to start a new game. (there must not be one in
+                            progress)
     /table          GET     Get what's visible on the table.
 
     /user           GET     Get a list of connected users.
