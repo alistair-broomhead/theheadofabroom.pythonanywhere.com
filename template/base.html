@@ -57,13 +57,14 @@
                                         }
                                     },
                                     "show": function (){
-                                        var anchor = this.navId;
                                         this.sub.classList.add("nav-sub-shown");
-                                        var bounds = anchor.getBoundingClientRect();
+                                        var bounds = this.navId.getBoundingClientRect();
                                         this.sub.style.top = bounds.bottom + "px";
                                         this.sub.style.left = bounds.left + "px";
                                     },
                                     "hide": function (){
+                                        var bounds = this.navId.getBoundingClientRect();
+                                        this.sub.style.top = bounds.top + "px";
                                         this.sub.classList.remove("nav-sub-shown");
                                     }
                                 };
