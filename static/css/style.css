@@ -108,56 +108,6 @@ body #page-top > div #nav .nav-section {
   padding: 0;
   margin: 0;
 }
-body #page-top > div #nav .nav-section .nav-sub {
-  position: absolute;
-  visibility: hidden;
-  height: 0;
-  -webkit-transition: all 0.25s ease 0;
-  -moz-transition: all 0.25s ease 0;
-  -ms-transition: all 0.25s ease 0;
-  -o-transition: all 0.25s ease 0;
-  transition: all 0.25s ease 0;
-}
-body #page-top > div #nav .nav-section .nav-sub div {
-  -webkit-transition: all 0.25s ease 0;
-  -moz-transition: all 0.25s ease 0;
-  -ms-transition: all 0.25s ease 0;
-  -o-transition: all 0.25s ease 0;
-  transition: all 0.25s ease 0;
-  visibility: none;
-  height: 0;
-}
-body #page-top > div #nav .nav-section .nav-sub div a {
-  font-size: 0;
-  -webkit-transition: all 0.25s ease 0;
-  -moz-transition: all 0.25s ease 0;
-  -ms-transition: all 0.25s ease 0;
-  -o-transition: all 0.25s ease 0;
-  transition: all 0.25s ease 0;
-}
-body #page-top > div #nav .nav-section .nav-sub-shown {
-  position: absolute;
-  visibility: visible;
-  opacity: 1;
-  height: auto;
-  -webkit-transition: all 0.25s ease 0;
-  -moz-transition: all 0.25s ease 0;
-  -ms-transition: all 0.25s ease 0;
-  -o-transition: all 0.25s ease 0;
-  transition: all 0.25s ease 0;
-}
-body #page-top > div #nav .nav-section .nav-sub-shown div {
-  margin: 2px;
-  margin-bottom: 8px;
-  visibility: visible;
-  opacity: 1;
-  height: auto;
-}
-body #page-top > div #nav .nav-section .nav-sub-shown div a {
-  background: white;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
-  font-size: inherit;
-}
 body #page-top > div #nav .nav-other .nav-link {
   background: white;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
@@ -362,6 +312,60 @@ body #footer {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+.nav-sub {
+  z-index: 30;
+  position: absolute;
+  visibility: hidden;
+  height: 0;
+  margin-top: 6px;
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
+.nav-sub div {
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+  visibility: none;
+  height: 0;
+  padding: 2px;
+}
+.nav-sub div a {
+  font-size: 0;
+  padding: 2px;
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
+.nav-sub-shown {
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+  -webkit-transition: all 0.25s ease 0;
+  -moz-transition: all 0.25s ease 0;
+  -ms-transition: all 0.25s ease 0;
+  -o-transition: all 0.25s ease 0;
+  transition: all 0.25s ease 0;
+}
+.nav-sub-shown div {
+  margin: 2px;
+  margin-bottom: 8px;
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+}
+.nav-sub-shown div a {
+  background: white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  font-size: inherit;
 }
 /* Dimensions */
 hr {

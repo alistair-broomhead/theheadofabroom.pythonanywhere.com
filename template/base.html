@@ -3,9 +3,11 @@
 {% set site_name = site.get('name') %}
 {% set page_name = page.get('name') %}
 {% set site_apps = site.get('apps') %}
+{% set nav_sections = ["Home", "Blog", "Experiments", "Contact", "CV"] %}
+{% set nav_menus = [] %}
 <head>
     <title> {{ site_name }} | {{ page_name }} </title>
-    /* <link rel="stylesheet" type="text/css" href="/static/css/font-size.css"> */
+    <link rel="stylesheet" type="text/css" href="/static/css/font-size.css">
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     <script src="/static/js/app/accordion.js"></script>
     {% block head %}{% endblock %}
@@ -28,72 +30,11 @@
                        class="nav-link">
                         {{ name }}
                     </a>
-                    {% set sub = app['sub'] %}
-                    {% if sub %}
-                        <div id="{{ nav_id }}-sub" class="nav-sub">
-                            {% for sub_app_name in sub %}
-                                {% set sub_app = site_apps[sub_app_name] %}
-                                <div>
-                                    <a href="{{ sub_app['url'] }}">{{ sub_app_name }}</a>
-                                </div>
-                            {% endfor %}
-                        </div>
-                        <script>
-                            (function(){
-                                var navId = document.getElementById("{{ nav_id }}");
-                                var sub = document.getElementById("{{ nav_id }}-sub");
-
-                                navId.menu = {
-                                    "navId": navId,
-                                    "sub": sub,
-                                    "count": 0,
-                                    "increase": function (){
-                                        if (this.count == 0){
-                                            this.show();
-                                        }
-                                        this.count++;
-                                    },
-                                    "decrease": function (){
-                                        this.count--;
-                                        if (this.count == 0){
-                                            this.hide();
-                                        }
-                                    },
-                                    "show": function (){
-                                        this.sub.classList.add("nav-sub-shown");
-                                        var bounds = this.navId.getBoundingClientRect();
-                                        this.sub.style.top = bounds.bottom + "px";
-                                        this.sub.style.left = bounds.left + "px";
-                                    },
-                                    "hide": function (){
-                                        var bounds = this.navId.getBoundingClientRect();
-                                        this.sub.style.top = bounds.top + "px";
-                                        this.sub.classList.remove("nav-sub-shown");
-                                    }
-                                };
-
-                                sub.onmouseover = navId.onmouseover = function(){
-                                    var menu = document.getElementById("{{ nav_id }}").menu;
-                                    menu.increase();
-                                };
-
-                                sub.onmouseout = navId.onmouseout = function(){
-                                    setTimeout(function(){
-                                        var menu = document.getElementById("{{ nav_id }}").menu;
-                                        menu.decrease();
-                                    }, 500)
-                                };
-                            })();
-                        </script>
-                    {% endif %}
                     </span>
                 {%- endmacro %}
-
-                {{ nav_item("Home") }}
-                {{ nav_item("Blog") }}
-                {{ nav_item("Experiments") }}
-                {{ nav_item("Contact") }}
-                {{ nav_item("CV") }}
+                {% for section in nav_sections %}
+                    {{ nav_item(section) }}
+                {% endfor %}
 
                 <script>
                     document.getElementById("nav-CV").onclick = function(){
@@ -130,7 +71,66 @@
     </small>
     <script>
         createAccordions(document);
+        function syncMenu(nav_id){
+            var navId = document.getElementById(nav_id);
+            var sub = document.getElementById(nav_id+"-sub");
+
+            navId.menu = {
+                "navId": navId,
+                "sub": sub,
+                "count": 0,
+                "increase": function (){
+                    if (this.count == 0){
+                        this.show();
+                    }
+                    this.count++;
+                },
+                "decrease": function (){
+                    this.count--;
+                    if (this.count == 0){
+                        this.hide();
+                    }
+                },
+                "show": function (){
+                    this.sub.classList.add("nav-sub-shown");
+                    var bounds = this.navId.getBoundingClientRect();
+                    this.sub.style.top = bounds.bottom + "px";
+                    this.sub.style.left = bounds.left + "px";
+                },
+                "hide": function (){
+                    var bounds = this.navId.getBoundingClientRect();
+                    this.sub.style.top = bounds.top + "px";
+                    this.sub.classList.remove("nav-sub-shown");
+                }
+            };
+
+            sub.onmouseover = navId.onmouseover = function(){
+                var menu = document.getElementById(nav_id).menu;
+                menu.increase();
+            };
+
+            sub.onmouseout = navId.onmouseout = function(){
+                setTimeout(function(){
+                    var menu = document.getElementById(nav_id).menu;
+                    menu.decrease();
+                }, 500)
+            };
+        };
     </script>
+    {% for name in nav_sections %}
+        {% set app = site_apps[name]['sub'] %}
+        {% if app %}
+            <div id="nav-{{ name }}-sub" class="nav-sub">
+                {% for name in app %}
+                    {% set sub_app = site_apps[name] %}
+                    <div>
+                        <a href="{{ sub_app['url'] }}">{{ name }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+            <script> syncMenu("nav-{{ name }}") </script>
+        {% endif %}
+    {% endfor %}
     {% block onload %}
     {% endblock %}
 </body>

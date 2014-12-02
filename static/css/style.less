@@ -86,44 +86,6 @@ body {
           display: inline;
           padding: 0;
           margin: 0;
-
-          .nav-sub {
-            position: absolute;
-            visibility: hidden;
-            height: 0;
-            .transition;
-            div{
-              .transition;
-              visibility: none;
-              height: 0;
-
-              a {
-                font-size: 0;
-                .transition;
-              }
-            }
-          }
-          .nav-sub-shown {
-            position: absolute;
-            visibility: visible;
-            opacity: 1;
-            height: auto;
-            .transition;
-            div{
-              margin: 2px;
-              margin-bottom: 8px;
-              visibility: visible;
-              opacity: 1;
-              height: auto;
-              a {
-                background: @text-background;
-                .with-shadow;
-                font-size: inherit;
-              }
-            }
-          }
-
-
         }
 
 
@@ -268,6 +230,46 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+.nav-sub {
+  z-index: 30;
+  position: absolute;
+  visibility: hidden;
+  height: 0;
+  margin-top: 6px;
+  .transition;
+  div{
+    .transition;
+    visibility: none;
+    height: 0;
+    padding: 2px;
+
+    a {
+      font-size: 0;
+      padding: 2px;
+      .transition;
+    }
+  }
+}
+.nav-sub-shown {
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+  .transition;
+  div{
+    margin: 2px;
+    margin-bottom: 8px;
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    a {
+      background: @text-background;
+      .with-shadow;
+      font-size: inherit;
+    }
+  }
 }
 
 /* Dimensions */
