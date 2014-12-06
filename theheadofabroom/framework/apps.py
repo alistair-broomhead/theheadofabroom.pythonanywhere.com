@@ -1,3 +1,5 @@
+from gevent.monkey import patch_all
+patch_all()
 from bottle import static_file, redirect, run, route, response
 
 from theheadofabroom.framework.app import App
@@ -51,7 +53,7 @@ class Apps(object):
 
     @staticmethod
     def start(*args, **kwargs):
-        run(*args, reloader=True, **kwargs)
+        run(*args, reloader=True, server='gevent', **kwargs)
 
     def statics(self, root, path_spec):
         @route(root+path_spec)

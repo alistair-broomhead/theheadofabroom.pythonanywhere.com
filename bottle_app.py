@@ -1,6 +1,6 @@
 from os import path
 from theheadofabroom.framework import Site, Apps
-from theheadofabroom.apps import message
+from theheadofabroom.apps import message, chalk_and_cheese
 
 
 def render_with_added(**add_context):
@@ -16,6 +16,7 @@ def main():
     apps = Apps(site)
 
     message.Message(apps).connect(apps.Message)
+    chalk_and_cheese.add_endpoints(apps.Chalk)
 
     return apps
 

@@ -44,9 +44,13 @@ class App(object):
             @route(url, *args, **kwargs)
             @wraps(fn)
             def inner(*fn_args, **fn_kwargs):
-                fn_kwargs['template'] = self.template
-                fn_kwargs['context'] = self.context
-                return fn(*fn_args, **fn_kwargs)
+                try:
+                    return fn(*fn_args, **fn_kwargs)
+                except TypeError as ex:
+                    fn_kwargs['template'] = self.template
+                    fn_kwargs['context'] = self.context
+                    return fn(*fn_args, **fn_kwargs)
+
             return inner
 
         return bind_decorator

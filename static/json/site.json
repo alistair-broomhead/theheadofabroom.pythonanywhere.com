@@ -2,7 +2,7 @@
     "name": "theheadofabroom.pythonanywhere.com",
     "copyright_year": 2014,
     "author": "Alistair Broomhead",
-    "experiments": ["Exploder", "Message"],
+    "experiments": ["Exploder", "Message", "Chalk"],
     "apps": {
         "Home": {
             "url": "/",
@@ -36,14 +36,19 @@
             "sub": ["Exploder", "Message"]
         },
         "Exploder": {
-            "url": "/exploder",
+            "url": "/experiments/exploder",
             "template": "exploder.html",
             "description": "A JavaScript/canvas particle experiment"
         },
         "Message": {
-            "url": "/message",
+            "url": "/experiments/message",
             "template": "message.html",
             "description": "A simple test of a python HTML micro-framework"
+        },
+        "Chalk": {
+            "url": "/experiments/chalk_and_cheese",
+            "template": "chalk_and_cheese.html",
+            "description": "Chalk and Cheese"
         }
-}
+    }
 }

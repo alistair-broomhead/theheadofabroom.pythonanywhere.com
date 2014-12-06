@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block head %}
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"
+            xmlns="http://www.w3.org/1999/html"></script>
+    <script src="/static/js/app/chalk_and_cheese.js"></script>
+    <style>
+        body #page-mid #content {
+            bottom: 30px;
+            right: 2%;
+        }
+        body #page-mid #sidebar {
+            display: none;
+        }
+        #state {
+            display: inline-block;
+            float: left;
+        }
+        #lobby, #table {
+            display: inline-block;
+            float: right;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div id="state">
+        <h1>State</h1>
+        <pre></pre>
+    </div>
+    <div id="lobby">
+        <h1> Lobby </h1>
+        <input id="join" type="button"
+               value="Join"
+               onclick="ChalkAndCheese.lobby.join()">
+    </div>
+    <div id="table">
+        <h1> Table </h1>
+        <div id="placement">
+            <input id="chalk" type="button"
+                   value="Place Chalk"
+                   onclick="ChalkAndCheese.table.place.chalk()">
+            <input id="cheese" type="button"
+                   value="Place Cheese"
+                   onclick="ChalkAndCheese.table.place.cheese()">
+        </div>
+        <div id="bidding">
+            <input id="bid-amt" type="number">
+            <input id="bid" type="button"
+                   value="Place Bid"
+                   onclick="ChalkAndCheese.table.bid.place()">
+            <input id="withdraw" type="button"
+                   value="Stand Down"
+                   onclick="ChalkAndCheese.table.bid.stand()">
+        </div>
+        <div id="raid">
+            <input id="player" type="number">
+            <input id="take" type="button"
+                    value="Take Token"
+                    onclick="ChalkAndCheese.table.raid.take()">
+        </div>
+    </div>
+{% endblock %}
+{% block onload %}
+    <script>
+        ChalkAndCheese.init("{{ page['url'] }}");
+    </script>
+{% endblock %}
