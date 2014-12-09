@@ -33,7 +33,7 @@
             "url": "/experiments",
             "template": "experiments.html",
             "description": "A collection of experiments",
-            "sub": ["Exploder", "Message"]
+            "sub": ["Exploder", "Message", "Chalk"]
         },
         "Exploder": {
             "url": "/experiments/exploder",

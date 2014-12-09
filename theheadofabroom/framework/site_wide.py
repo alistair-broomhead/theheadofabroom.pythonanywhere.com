@@ -1,4 +1,4 @@
-from os import path, getenv
+from os import path
 from json import load
 from bottle import ResourceManager
 from jinja2 import Environment, FileSystemLoader
