@@ -1,4 +1,3 @@
-setuptools >= 6
 gevent >= 1.0
 bottle >= 0.12.7
 Jinja2 >= 2.7.2
