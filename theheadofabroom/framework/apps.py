@@ -53,9 +53,9 @@ class Apps(object):
 
     @staticmethod
     def start(*args, **kwargs):
-        if 'port' not in kwargs:
-            import os
-            kwargs['port'] = int(os.environ.get("PORT", 5000))
+        import os
+        kwargs.setdefault('port', int(os.environ.get("PORT", 5000)))
+        kwargs.setdefault('host', '0.0.0.0')
         run(*args, reloader=True, server='gevent', **kwargs)
 
     def statics(self, root, path_spec):
