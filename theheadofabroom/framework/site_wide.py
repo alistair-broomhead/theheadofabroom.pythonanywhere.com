@@ -7,6 +7,7 @@ from jinja2 import Environment, FileSystemLoader
 class Site(object):
     def __init__(self, root):
         self.app_root = path.dirname(root)
+        print self.app_root
         self.files = ResourceManager(base=root)
         self.files.add_path(path='static/')
         self.files.add_path(path='static/json/')
