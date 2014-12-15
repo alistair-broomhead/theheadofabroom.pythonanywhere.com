@@ -16,7 +16,6 @@ def main():
     apps = Apps(site)
 
     message.Message(apps).connect(apps.Message)
-    chalk_and_cheese.add_endpoints(apps.Chalk)
 
     return apps
 
