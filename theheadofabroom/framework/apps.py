@@ -62,7 +62,7 @@ class Apps(object):
         @route(root+path_spec)
         def serve_statics(path):
             filename = self.site.files.lookup(path)
-            return static_file(filename, '/')
+            return static_file(filename, '')
         return serve_statics
 
     @staticmethod

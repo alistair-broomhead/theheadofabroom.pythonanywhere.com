@@ -50,7 +50,7 @@
             "template": "chalk_and_cheese.html",
             "description": "Chalk and Cheese",
             "extra": {
-                "heroku": "http://chalk-and-cheese-server.herokuapp.com"
+                "heroku": "http://127.0.0.1:5001"
             }
         }
     }

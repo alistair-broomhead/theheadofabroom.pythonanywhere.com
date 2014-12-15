@@ -171,6 +171,7 @@ var ChalkAndCheese = (function(){
                 url: self.base + url,
                 type: method,
                 data: data,
+                dataType: 'json',
                 headers: { "Authorization": self.auth() },
                 success: success,
                 error: failure,
@@ -181,10 +182,17 @@ var ChalkAndCheese = (function(){
         init: function(base){
             var self = this;
             self.base = base;
-            $.post(self.url('/mouse'), null, function(data){
-                self.mouse = data;
-                self.tick();
-            })
+            $.ajax({
+                async: false,
+                url: self.url('/mouse'),
+                type: 'POST',
+                dataType: 'json',
+                success: function(data){
+                    self.mouse = data;
+                    self.tick();
+                },
+                trackMessageLength : true
+            });
         }
     };
 

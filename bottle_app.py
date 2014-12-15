@@ -1,6 +1,6 @@
 from os import path
 from theheadofabroom.framework import Site, Apps
-from theheadofabroom.apps import message, chalk_and_cheese
+from theheadofabroom.apps import message
 
 
 def render_with_added(**add_context):
