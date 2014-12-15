@@ -48,7 +48,10 @@
         "Chalk": {
             "url": "/experiments/chalk_and_cheese",
             "template": "chalk_and_cheese.html",
-            "description": "Chalk and Cheese"
+            "description": "Chalk and Cheese",
+            "extra": {
+                "heroku": "http://chalk-and-cheese-server.herokuapp.com"
+            }
         }
     }
 }

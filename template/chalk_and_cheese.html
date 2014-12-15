@@ -61,6 +61,6 @@
 {% endblock %}
 {% block onload %}
     <script>
-        ChalkAndCheese.init("{{ page['url'] }}");
+        ChalkAndCheese.init("{{ page['extra']['heroku'] }}");
     </script>
 {% endblock %}
