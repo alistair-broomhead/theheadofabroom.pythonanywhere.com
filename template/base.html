@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+{% block html %}<html> {% endblock %}
 {% set site_name = site.get('name') %}
 {% set page_name = page.get('name') %}
 {% set site_apps = site.get('apps') %}
@@ -12,7 +12,7 @@
     <script src="/static/js/app/accordion.js"></script>
     {% block head %}{% endblock %}
 </head>
-<body id="wrapper">
+{% block body %}<body id="wrapper"> {% endblock %}
     <div id="page-top">
         <div>
                 <div class="headshot"></div>

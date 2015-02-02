@@ -16,11 +16,12 @@ p {
   margin: 12px 0;
 }
 .full-height-card {
-  background: white;
+  background: #ffffff;
   color: #212121;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   top: 75px;
   /* Height of header and nav */
+
   padding: 10px;
 }
 body {
@@ -109,7 +110,7 @@ body #page-top > div #nav .nav-section {
   margin: 0;
 }
 body #page-top > div #nav .nav-other .nav-link {
-  background: white;
+  background: #ffffff;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
 body #page-top > div #nav .nav-current .nav-link {
@@ -140,7 +141,7 @@ body #page-top > div #github div span {
   position: relative;
   top: 10px;
   right: -2%;
-  background: white;
+  background: #ffffff;
   padding: 10px 4px;
   border-radius: 2px;
   height: 10px;
@@ -162,6 +163,7 @@ body #page-mid #content {
   padding: 10px;
   top: 75px;
   /* Height of header and nav */
+
   right: 30%;
   left: 2%;
   position: absolute;
@@ -216,7 +218,7 @@ body #page-mid #content .accordion .heading {
   transition: all 0.25s ease 0;
 }
 body #page-mid #content .accordion div {
-  background: white;
+  background: #ffffff;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   margin: 10px;
   padding: 10px;
@@ -240,7 +242,7 @@ body #page-mid #content .accordion .collapsible > * {
 }
 @media screen {
   body #page-mid #content .contracted {
-    background: white;
+    background: #ffffff;
     margin: 0;
     padding: 5px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
@@ -262,11 +264,12 @@ body #page-mid #content .accordion .collapsible > * {
   }
 }
 body #page-mid #sidebar {
-  background: white;
+  background: #ffffff;
   color: #212121;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   top: 75px;
   /* Height of header and nav */
+
   padding: 10px;
   position: fixed;
   right: 2px;
@@ -363,7 +366,7 @@ body #footer {
   height: auto;
 }
 .nav-sub-shown div a {
-  background: white;
+  background: #ffffff;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   font-size: inherit;
 }

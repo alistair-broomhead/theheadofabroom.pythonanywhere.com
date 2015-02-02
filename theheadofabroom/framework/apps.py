@@ -56,13 +56,15 @@ class Apps(object):
         import os
         kwargs.setdefault('port', int(os.environ.get("PORT", 5000)))
         kwargs.setdefault('host', '0.0.0.0')
-        run(*args, reloader=True, server='gevent', **kwargs)
+        run(*args, **kwargs)
 
     def statics(self, root, path_spec):
         @route(root+path_spec)
         def serve_statics(path):
             filename = self.site.files.lookup(path)
-            return static_file(filename, '')
+            import os
+            prefix = os.path.commonprefix((filename, os.path.abspath('')))
+            return static_file(filename[len(prefix):], '')
         return serve_statics
 
     @staticmethod
