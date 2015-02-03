@@ -5,6 +5,7 @@ angular.module('cc-player', ['cc-utils'])
         self.data = undefined;
 
         self.bind = function (Lobby){
+            Tables.bind(self);
             self.get(function(){
                 self.poll();
                 Lobby.bind();

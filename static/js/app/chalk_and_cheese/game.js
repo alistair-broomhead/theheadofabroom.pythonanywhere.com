@@ -1,4 +1,4 @@
-angular.module('cc-game', ['cc-player', 'cc-lobby', 'cc-table', 'cc-mouse'])
+angular.module('cc-game', ['cc-player', 'cc-lobby', 'cc-table'])
     .controller('ccGameCtrl', ['$scope', 'Lobby', 'Player', function ($scope, Lobby, Player){
         Player.bind(Lobby);
     }])
