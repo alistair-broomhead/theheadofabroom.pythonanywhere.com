@@ -56,12 +56,17 @@ angular.module('cc-table', ['cc-utils'])
                               this.$table.phase == "bidding") &&
                              this.stack.length > 0);
 
+            this.$has_stack = (this.stack.length > 0);
 
             return $data;
         };
 
         TableMouse.prototype.place = function(card){
             this.$table.place(card);
+        };
+
+        TableMouse.prototype.take = function(){
+            this.$table.take(this.id);
         };
 
         TableMouse.prototype.placeBid = function(){
@@ -130,6 +135,15 @@ angular.module('cc-table', ['cc-utils'])
                     self.poll();
                 })
         };
+        Table.prototype.take = function(id){
+            var self = this;
+            Http.get('/table/'+this.id+'/token/'+ id)
+                .success(function(){
+                    self.get();
+                }).then(function(){
+                    self.poll();
+                })
+        };
 
         Table.prototype.placeBid = function(amt){
             var self = this;
@@ -163,6 +177,9 @@ angular.module('cc-table', ['cc-utils'])
             link: function($scope){
                 $scope.tables = Tables;
                 $scope.table = Tables.objects[$scope.index];
+                $scope.raiding = function(){
+                    return $scope.table.phase == "raid";
+                };
             },
             template:
                 '<div id="table-{{index}}" class="tab table-tab">' +
@@ -171,7 +188,14 @@ angular.module('cc-table', ['cc-utils'])
                         '<h1> Phase: {{table.phase}} </h1><hr>' +
                         '<cc-table-mouse mouse="mouse" ' +
                     'ng-repeat="(_id, mouse) in table.mice"></cc-table-mouse>'
-                       + '<pre>{{table | json}}</pre>' +
+                       + '<div ng-if="raiding()">' +
+                            '<h2> Taken: </h2><br>' +
+                            '<div ng-repeat="card in table.$data.taken" ng-set="cardName = card[1]">' +
+                                '<span> {{table.mice[card[0]].name}}\'s </span>' +
+                                '<button ng-disabled="true"> {{card[1]}} </button>' +
+                            '</div>' +
+                        '</div>' +
+                        '<pre>{{table | json}}</pre>' +
                     '</div>' +
                 '</div>'
         };
@@ -215,6 +239,9 @@ angular.module('cc-table', ['cc-utils'])
             link: function($scope){
                 $scope.hand = new Array($scope.mouse.hand);
                 $scope.stack = new Array($scope.mouse.stack);
+                $scope.take = function(){
+                    $scope.mouse.take()
+                };
 
                 $scope.disabled = function($last){
                     // You can only grab the top card in the raid phase
@@ -226,9 +253,9 @@ angular.module('cc-table', ['cc-utils'])
 
                     if (table.phase != "raid") return true;
 
-                    var player = table.mice[table.turn];
+                    var has_stack = table.mice[table.$data.turn].$has_stack;
 
-                    return player.stack.length > 0;
+                    return has_stack;
                 };
             },
             template:
@@ -237,11 +264,11 @@ angular.module('cc-table', ['cc-utils'])
                     '<span> Points: {{mouse.points}} </span> | ' +
                     '<span> Hand: ' +
                         '<cc-unknown-card ng-repeat="i in hand track by $index"' +
-                                        ' disabled="true"></cc-unknown-card>' +
+                                        ' take="mouse.take" disabled="true"></cc-unknown-card>' +
                     ' </span> | ' +
                     '<span> Stack: ' +
-                        '<cc-unknown-card ng-repeat="i in stack track by $index"' +
-                            ' disabled="disabled($last)"></cc-unknown-card>' +
+                        '<button ng-click="take()" ng-disable="disabled($last)"' +
+                            ' ng-repeat="i in stack track by $index"> ? </button>' +
                     ' </span>' +
                     '<span ng-if="mouse.bid > 0"> | Bid: {{mouse.bid}} cheese </span>' +
                 '</div>'
@@ -259,8 +286,6 @@ angular.module('cc-table', ['cc-utils'])
                 var table = $scope.mouse.$table;
 
                 $scope.isRaid = (table.phase == "raid");
-
-                $scope.canPlace = (mouse.$is_turn && table.phase == "placement");
                 $scope.bid = function(){
                     mouse.placeBid();
                 };
@@ -269,6 +294,19 @@ angular.module('cc-table', ['cc-utils'])
                 };
                 $scope.wonBid = mouse.$is_turn && (
                     table.phase == "raid" || table.phase == "finished");
+                $scope.place = function(card){
+                    $scope.mouse.place(card);
+                };
+                $scope.take = function(){
+                    $scope.mouse.take();
+                };
+
+                $scope.canPlace = function (){
+                    return (mouse.$is_turn && table.phase == "placement");
+                };
+                $scope.canTake = function (last){
+                    return (last && $scope.isRaid && mouse.$is_turn);
+                };
             },
             template:
                 '<div class="{{mouse.cls}}" ng-if="mouse.is_player">' +
@@ -276,15 +314,15 @@ angular.module('cc-table', ['cc-utils'])
                     '<div> Points: {{mouse.points}} </div>' +
                     '<div>' +
                         'Hand: ' +
-                        '<cc-table-card mouse="mouse" card="card"' +
+                        '<cc-table-card card="card" click="place"' +
                                       ' ng-repeat="card in mouse.hand track by $index"' +
-                                      ' enabled="canPlace"></cc-table-card>'+
+                                      ' enabled="canPlace()"></cc-table-card>'+
                     '</div>' +
                     '<div>' +
                         'Stack:' +
-                        '<cc-table-card mouse="mouse" card="card"' +
+                        '<cc-table-card card="card" click="take"' +
                                       ' ng-repeat="card in mouse.stack track by $index"' +
-                                      ' enabled="$last && isRaid"></cc-table-card>'+
+                                      ' enabled="canTake($last)"></cc-table-card>'+
                     '</div>' +
                     '<div ng-if="mouse.$can_bid">' +
                         '<input type="number" value="{{mouse.bid}}" ng-model="mouse.bid"/>' +
@@ -300,18 +338,13 @@ angular.module('cc-table', ['cc-utils'])
             restrict: 'E',
             replace: true,
             scope: {
-                mouse: '=',
                 card: '=',
-                enabled: '='
-            },
-            link: function($scope){
-                $scope.place = function(){
-                    $scope.mouse.place($scope.card);
-                };
+                enabled: '=',
+                click: '='
             },
             template:
                 '<span>' +
-                    '<button ng-click="place()" ng-disabled="!enabled">' +
+                    '<button ng-click="click(card)" ng-disabled="!enabled">' +
                         '{{card}}' +
                     '</button>' +
                 '</span>'
